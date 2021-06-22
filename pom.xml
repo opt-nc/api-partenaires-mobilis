@@ -14,6 +14,7 @@
 	<description>POC d&apos;intégration d&apos;un service REST dans Docker puis dans Kubernetes</description>
 	<properties>
 		<java.version>11</java.version>
+		<sonar.host.url>https://sonarqube.intranet.opt</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -86,5 +87,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
 </project>
