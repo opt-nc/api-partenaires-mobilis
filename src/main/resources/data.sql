@@ -1,0 +1,1 @@
+create table partenaire as SELECT * FROM CSVREAD('classpath:/partenaires.csv', NULL, 'fieldSeparator=;');
