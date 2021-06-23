@@ -16,4 +16,8 @@ public interface PartenaireRepository extends PagingAndSortingRepository<Partena
     @Override
     @RestResource(exported = false)
     <S extends Partenaire> S save(S entity);
+
+    @Override
+    @RestResource(exported = false)
+    void delete(Partenaire entity);
 }
