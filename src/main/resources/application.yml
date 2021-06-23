@@ -3,3 +3,10 @@ spring:
     hibernate.ddl-auto: update
   datasource:
     url: jdbc:h2:mem:db
+  data:
+    rest:
+      base-path: /api
+
+springdoc:
+  swagger-ui:
+    path: /
