@@ -102,58 +102,17 @@
                         <image>adoptopenjdk/openjdk11:alpine-jre</image>
                     </from>
                     <to>
-                        <image>${docker.repository}/${project.name}:${project.version}</image>
-                        <tags>
-                            <tag>${docker.tag}</tag>
-                        </tags>
+                        <image>artifactory.intranet.opt/docker/${project.name}:${project.version}</image>
                     </to>
                     <container>
                         <ports>
                             <port>8080</port>
                         </ports>
-                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
                     </container>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <!-- Repo docker en fonction d'une version snapshot ou non -->
-                    <execution>
-                        <id>build-helper-regex-docker-repository</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>regex-property</goal>
-                        </goals>
-                        <configuration>
-                            <name>docker.repository</name>
-                            <value>${project.version}</value>
-                            <regex>.*-SNAPSHOT</regex>
-                            <replacement>artifactory.intranet.opt/docker-snapshot-local</replacement>
-                            <failIfNoMatch>artifactory.intranet.opt/docker-release-local</failIfNoMatch>
-                        </configuration>
-                    </execution>
-                    <!-- Tag docker 'latest' ou 'snapshot' -->
-                    <execution>
-                        <id>build-helper-regex-docker-tag</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>regex-property</goal>
-                        </goals>
-                        <configuration>
-                            <name>docker.tag</name>
-                            <value>${project.version}</value>
-                            <regex>.*-SNAPSHOT</regex>
-                            <replacement>snapshot</replacement>
-                            <failIfNoMatch>latest</failIfNoMatch>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
-
+<!-- 
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -162,6 +121,6 @@
                     <version>3.9.0.2155</version>
                 </plugin>
             </plugins>
-        </pluginManagement>
+        </pluginManagement> -->
     </build>
 </project>
