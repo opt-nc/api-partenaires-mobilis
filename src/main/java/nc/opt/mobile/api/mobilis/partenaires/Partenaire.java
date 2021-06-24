@@ -8,7 +8,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Partenaire {
-    
+
     @Id
     private Long id;
     private String nom;
@@ -16,6 +16,9 @@ public class Partenaire {
     private String adresse;
     private String quartier;
     private String ville;
+
+    private double lat;
+    private double lng;
 
     public Long getId() {
         return id;
@@ -52,5 +55,17 @@ public class Partenaire {
     }
     public void setVille(String ville) {
         this.ville = ville;
+    }
+    public double getLat() {
+        return lat;
+    }
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+    public double getLng() {
+        return lng;
+    }
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 }
