@@ -114,7 +114,7 @@
                         <image>adoptopenjdk/openjdk11:alpine-jre</image>
                     </from>
                     <to>
-                        <image>artifactory.intranet.opt/docker/${project.name}:${project.version}</image>
+                        <image>ghcr.io/opt-nc/${project.name}:${project.version}</image>
                         <tags>
                             <tag>${docker.tag}</tag>
                         </tags>
