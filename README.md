@@ -17,8 +17,8 @@ Les données sont exposées en REST directement par le repository via [spring-bo
 ## Docker
 
 Une image docker est généré via le plugin JIB pour maven (qui permet notamment de générer une image Docker sans avoir le client docker installé), elle peut-être lancée de la manière avec la commande suivante :
-- `docker run --rm -p 8080:8080 artifactory.intranet.opt/docker/api-partenaires-mobilis:snapshot` pour la denière snapshot
-- `docker run --rm -p 8080:8080 artifactory.intranet.opt/docker/api-partenaires-mobilis:latest` pour la denière release
+- `docker run --rm -p 8080:8080 ghcr.io/opt-nc/api-partenaires-mobilis:snapshot` pour la denière snapshot
+- `docker run --rm -p 8080:8080 ghcr.io/opt-nc/api-partenaires-mobilis:latest` pour la denière release
 
 Pour tester :
 - Soit un `curl http://localhost:8080/api/partenaires`
