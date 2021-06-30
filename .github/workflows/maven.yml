@@ -16,4 +16,6 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build with Maven
-      run: mvn deploy -Dregistry=https://maven.pkg.github.com/opt-nc -B -Dtoken=${{secrets.OPT_CI_TOKEN}} package
+      run: mvn -B deploy
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

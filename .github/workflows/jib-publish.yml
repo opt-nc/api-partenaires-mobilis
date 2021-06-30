@@ -2,7 +2,7 @@ name: Publish image on Github Container Registry
 
 on:
   push:
-    branches: main
+    branches: [main]
 
 jobs:
   build_image:
@@ -15,4 +15,4 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Build with Maven and publish with jib
-        run: mvn compile -Dtoken=${{secrets.OPT_CI_TOKEN}} jib:build
+        run: mvn -B -Djib.to.auth.username=${{ github.actor }} -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }} compile jib:build
