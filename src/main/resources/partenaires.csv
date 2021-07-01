@@ -1,21 +1,21 @@
-id;nom;adresse;telephone;quartier;ville;lat;lng
-1;BOURAIL ELECTRONIC;5 A rue Simone Dremon - Village;44 33 55;;Bourail;-21.56877;165.49879
-2;CONNECT MULTIMEDIA;Complexe Commercial Kenu-In Koutio;41 20 22;;Dumbéa;-22.222359;166.473116
-3;MOBILE MANIA;Centre Pascal Picou Kenu-In Koutio;46 22 09;;Dumbéa;-22.222359;166.473116
-4;LAGOON;Centre Commercial TEARI;29 68 21;;Koné;-21.071298;164.86979
-5;TECH MASTER;Ramada Plazza - 27 PMD R. Laroque;20 68 66;Baie des Citrons;Nouméa;-22.302828;166.448744
-6;BUI DUYET TÉLÉPHONIE;12 bis rue du Général Mangin;27 73 33;Centre-ville;Nouméa;-22.27065;166.44066
-7;LAKAZÀMOBILE;Galerie Nouméa Centre - 20 rue A. France;28 12 68;Centre-ville;Nouméa;-22.271792;166.440286
-8;MOBILE MANIA;25 bis rue J. Jaurès;28 82 25;Centre-ville;Nouméa;-22.270655;166.440546
-9;SHOP PANASONIC;12 rue du Général Mangin;28 82 88;Centre-ville;Nouméa;-22.271358;166.439784
-10;CAN'L;34 rue du Général Gallieni;24 38 70;Centre-ville;Nouméa;-22.273209;166.438967
-11;DJILO MULTIMEDIA;14 rue Guegan - Quartier Latin;43 55 34;Centre-ville;Nouméa;-22.275736;166.444705
-12;CONNECT MULTIMEDIA;11 rte Baie des dames;27 86 29;Ducos;Nouméa;-22.241986;166.446623
-13;BUI DUYET ELECTRONIC CENTER;Complexe Ducos Le Centre - 30 rte Baie des dames;24 05 61;Ducos;Nouméa;-22.236213;166.447948
-14;LAGOON;Complexe Le Plexus - 63 rue Fernand Forest;28 88 88;Ducos;Nouméa;-22.247054;166.449349
-15;MOBILE MANIA;Complexe LEADER PRICE - 6 rue du 18 juin;23 32 07;Magenta;Nouméa;-22.268345;166.462635
-16;DJILO MULTIMEDIA;312 rue Jacques Iekawé;46 61 10;PK7;Nouméa;-22.232464;166.479759
-17;LAGOON;Galerie Port Plaisance - 10 rue Jules Garnier;29 68 12;Port Plaisance;Nouméa;-22.290716;166.438833
-18;MOBILE MANIA;10 rue Schmitt;30 48 21;Sainte-Marie;Nouméa;-22.27554;166.460041
-19;MOBILE MANIA;78 RT1 - Village;27 75 04;;Paita;-22.130447;166.368406
-20;MOBILE MANIA;2 795 avenue des 2 baies;27 74 64;;Robinson;-22.224573;166.508334
+id;nom;adresse;telephone;quartier;ville;position
+1;BOURAIL ELECTRONIC;5 A rue Simone Dremon - Village;44 33 55;;Bourail;POINT(165.49879 -21.56877)
+2;CONNECT MULTIMEDIA;Complexe Commercial Kenu-In Koutio;41 20 22;;Dumbéa;POINT(166.473116 -22.222359)
+3;MOBILE MANIA;Centre Pascal Picou Kenu-In Koutio;46 22 09;;Dumbéa;POINT(166.473116 -22.222359)
+4;LAGOON;Centre Commercial TEARI;29 68 21;;Koné;POINT(164.86979 -21.071298)
+5;TECH MASTER;Ramada Plazza - 27 PMD R. Laroque;20 68 66;Baie des Citrons;Nouméa;POINT(166.448744 -22.302828)
+6;BUI DUYET TÉLÉPHONIE;12 bis rue du Général Mangin;27 73 33;Centre-ville;Nouméa;POINT(166.44066 -22.27065)
+7;LAKAZÀMOBILE;Galerie Nouméa Centre - 20 rue A. France;28 12 68;Centre-ville;Nouméa;POINT(166.440286 -22.271792)
+8;MOBILE MANIA;25 bis rue J. Jaurès;28 82 25;Centre-ville;Nouméa;POINT(166.440546 -22.270655)
+9;SHOP PANASONIC;12 rue du Général Mangin;28 82 88;Centre-ville;Nouméa;POINT(166.439784 -22.271358)
+10;CAN'L;34 rue du Général Gallieni;24 38 70;Centre-ville;Nouméa;POINT(166.438967 -22.273209)
+11;DJILO MULTIMEDIA;14 rue Guegan - Quartier Latin;43 55 34;Centre-ville;Nouméa;POINT(166.444705 -22.275736)
+12;CONNECT MULTIMEDIA;11 rte Baie des dames;27 86 29;Ducos;Nouméa;POINT(166.446623 -22.241986)
+13;BUI DUYET ELECTRONIC CENTER;Complexe Ducos Le Centre - 30 rte Baie des dames;24 05 61;Ducos;Nouméa;POINT(166.447948 -22.236213)
+14;LAGOON;Complexe Le Plexus - 63 rue Fernand Forest;28 88 88;Ducos;Nouméa;POINT(166.449349 -22.247054)
+15;MOBILE MANIA;Complexe LEADER PRICE - 6 rue du 18 juin;23 32 07;Magenta;Nouméa;POINT(166.462635 -22.268345)
+16;DJILO MULTIMEDIA;312 rue Jacques Iekawé;46 61 10;PK7;Nouméa;POINT(166.479759 -22.232464)
+17;LAGOON;Galerie Port Plaisance - 10 rue Jules Garnier;29 68 12;Port Plaisance;Nouméa;POINT(166.438833 -22.290716)
+18;MOBILE MANIA;10 rue Schmitt;30 48 21;Sainte-Marie;Nouméa;POINT(166.460041 -22.27554)
+19;MOBILE MANIA;78 RT1 - Village;27 75 04;;Paita;POINT(166.368406 -22.130447)
+20;MOBILE MANIA;2 795 avenue des 2 baies;27 74 64;;Robinson;POINT(166.508334 -22.224573)

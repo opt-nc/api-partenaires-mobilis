@@ -12,7 +12,40 @@ Ce service met à disposition la liste des boutiques de prestataires Mobilis.
 Ce service se compose d'une base de donnée mémoire H2 chargé à chaque démarrage via le fichier `data.sql` qui insert le 
 `partenaires.csv` dans la table `PARTENAIRE`.
 
-Les données sont exposées en REST directement par le repository via [spring-boot-starter-data-rest](https://docs.spring.io/spring-data/rest/docs/current/reference/htm) et sont accessibles directement par `curl http://localhost:8080/api/partenaires`.
+Une base de données spactiale embarquée (http://www.h2gis.org/) permet de faire des interrogations sur des zones géographiques.
+
+Les données sont exposées en REST Json/[GeoJSON](https://geojson.org/) pour pemettre une intégration dans un outil de visu le plus simplement possible.
+
+
+Exemple : 
+```bash
+curl http://localhost:8080/api/partenaires
+```
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ville": "Bourail",
+        "quartier": null,
+        "adresse": "5 A rue Simone Dremon - Village",
+        "telephone": "44 33 55",
+        "nom": "BOURAIL ELECTRONIC"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          165.49879,
+          -21.56877
+        ]
+      }
+    }
+    ...
+  ]
+}
+```
 
 ## Docker
 
