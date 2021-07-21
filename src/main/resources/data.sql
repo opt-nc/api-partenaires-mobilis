@@ -4,6 +4,6 @@ CALL H2GIS_SPATIAL();
 
 create table partenaire as
     SELECT cast(id as integer) as id, nom, adresse, telephone, quartier, ville, ST_GeomFromText(position) as position
-    FROM CSVREAD('classpath:/partenaires.csv', NULL, 'fieldSeparator=;');
+    FROM CSVREAD('classpath:/partenaires.csv');
 
 create spatial index idx_partenaires_localisation ON partenaire(position);
