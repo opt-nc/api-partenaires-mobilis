@@ -47,6 +47,13 @@ curl http://localhost:8080/api/partenaires
 }
 ```
 
+## Exemple de requête de récupération par position géographique
+
+Récupère les boutiques situées dans un rayon de 5000 mètres du point indiqué :
+```bash
+curl 'http://localhost:8080/api/partenaires?nearBy.lon=166.448744&nearBy.lat=-22.302828&nearBy.distance=2000' -H 'accept: application/json'
+```
+
 ## Docker
 
 Une image docker est généré via le plugin JIB pour maven (qui permet notamment de générer une image Docker sans avoir le client docker installé), elle peut-être lancée de la manière avec la commande suivante :
