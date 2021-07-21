@@ -1,25 +1,17 @@
 package nc.opt.mobile.api.mobilis.partenaires;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.data.rest.core.annotation.RestResource;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import java.util.List;
 
-/**
- * Repository Spring Boot avec accès REST
- */
-@CrossOrigin("*")
-@RepositoryRestResource(collectionResourceRel = "partenaire", path = "partenaires")
-public interface PartenaireRepository extends PagingAndSortingRepository<Partenaire, Long> {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+public interface PartenaireRepository extends JpaRepository<Partenaire, Long> {
     /**
-     * Pas de possibilité de création/modif en REST
+     * Pour la géolocalisation : à partir du point de localisation (longitude/latitude), transformation en coordonnées
+     * métriques (Mercator) pour faire un cercle sur la base d'un rayon en mètres (ST_BUFFER), ensuite retour en coodronnées
+     * GPS (longitude/latitude) pour vérifier l'intersection avec les positions des boutiques partenaires
      */
-    @Override
-    @RestResource(exported = false)
-    <S extends Partenaire> S save(S entity);
-
-    @Override
-    @RestResource(exported = false)
-    void delete(Partenaire entity);
+    @Query("FROM Partenaire WHERE ST_INTERSECTS(position, ST_TRANSFORM(ST_SetSRID(ST_BUFFER(ST_TRANSFORM(ST_SetSRID( ST_GeomFromText(:point), 4326 ), 3857 ), :distance ), 3857 ), 4326 )) = true")
+    List<Partenaire> findByPositionDistance(@Param("point") String point, @Param("distance") long distance);
 }
