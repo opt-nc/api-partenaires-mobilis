@@ -4,6 +4,8 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.springframework.data.geo.Point;
 
 import nc.opt.mobile.api.mobilis.partenaires.util.PointConverter;
@@ -18,6 +20,8 @@ public class Partenaire {
     private Long id;
     private String nom;
     private String telephone;
+    @JsonProperty("url_fb")
+    private String urlFb;
     private String adresse;
     private String quartier;
     private String ville;
@@ -47,6 +51,14 @@ public class Partenaire {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getUrlFb() {
+        return urlFb;
+    }
+
+    public void setUrlFb(String urlFb) {
+        this.urlFb = urlFb;
     }
 
     public String getAdresse() {
