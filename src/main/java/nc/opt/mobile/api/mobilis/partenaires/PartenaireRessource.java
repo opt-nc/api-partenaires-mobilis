@@ -1,6 +1,7 @@
 package nc.opt.mobile.api.mobilis.partenaires;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -69,11 +70,20 @@ public class PartenaireRessource {
     private Feature map(Partenaire partenaire) {
         Feature feature = new Feature();
 
+        feature.setProperties(new LinkedHashMap<>()); // to preserve input order
+
         feature.setProperty("nom", partenaire.getNom());
         feature.setProperty("adresse", partenaire.getAdresse());
         feature.setProperty("quartier", partenaire.getQuartier());
         feature.setProperty("ville", partenaire.getVille());
         feature.setProperty("telephone", partenaire.getTelephone());
+        
+        if (partenaire.getUrlGmaps() != null) {
+            feature.setProperty("url_gmaps", partenaire.getUrlGmaps());
+        }
+        if (partenaire.getUrlFb() != null) {
+            feature.setProperty("url_fb", partenaire.getUrlFb());
+        }
 
         feature.setGeometry(new Point(partenaire.getPosition().getX(), partenaire.getPosition().getY()));
 

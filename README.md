@@ -16,8 +16,6 @@ Une base de données spactiale embarquée (http://www.h2gis.org/) permet de fair
 
 Les données sont exposées en REST Json/[GeoJSON](https://geojson.org/) pour pemettre une intégration dans un outil de visu le plus simplement possible.
 
-
-Exemple : 
 ```bash
 curl http://localhost:8080/api/partenaires
 ```
@@ -32,7 +30,9 @@ curl http://localhost:8080/api/partenaires
         "quartier": null,
         "adresse": "5 A rue Simone Dremon - Village",
         "telephone": "44 33 55",
-        "nom": "BOURAIL ELECTRONIC"
+        "nom": "BOURAIL ELECTRONIC",
+        "url_gmaps": "https://goo.gl/maps/nSZ25o1ogQWoFQjK7",
+        "url_fb": "https://fr-fr.facebook.com/BOURAIL.ELECTRONIC/",
       },
       "geometry": {
         "type": "Point",
