@@ -20,6 +20,8 @@ public class Partenaire {
     private Long id;
     private String nom;
     private String telephone;
+    @JsonProperty("url_gmaps")
+    private String urlGmaps;
     @JsonProperty("url_fb")
     private String urlFb;
     private String adresse;
@@ -51,6 +53,14 @@ public class Partenaire {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getUrlGmaps() {
+        return urlGmaps;
+    }
+
+    public void setUrlGmaps(String urlGmaps) {
+        this.urlGmaps = urlGmaps;
     }
 
     public String getUrlFb() {
