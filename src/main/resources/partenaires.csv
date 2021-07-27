@@ -1,4 +1,4 @@
-id,nom,adresse,telephone,url_gmaps,url_fb,quartier,ville,position,
+id,nom,adresse,telephone,url_gmaps,url_fb,quartier,ville,position
 1,BOURAIL ELECTRONIC,5 A rue Simone Dremon - Village,44 33 55,https://goo.gl/maps/nSZ25o1ogQWoFQjK7,https://fr-fr.facebook.com/BOURAIL.ELECTRONIC/,,Bourail,POINT(165.49879 -21.56877)
 2,CONNECT MULTIMEDIA,Complexe Commercial Kenu-In Koutio,41 20 22,https://goo.gl/maps/2DbyT75vbncUyuT46,https://fr-fr.facebook.com/connectmultimedianc/,,Dumbéa,POINT(166.473116 -22.222359)
 3,MOBILE MANIA,Centre Pascal Picou Kenu-In Koutio,46 22 09,https://goo.gl/maps/eXgnHHiZACZPUPvc7,https://fr-fr.facebook.com/maniamob/,,Dumbéa,POINT(166.473116 -22.222359)
