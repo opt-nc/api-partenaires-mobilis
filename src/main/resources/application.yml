@@ -1,3 +1,9 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 spring:
   jpa:
     hibernate.ddl-auto: update
@@ -6,4 +12,4 @@ spring:
 
 springdoc:
   swagger-ui:
-    path: /
+    path: /api

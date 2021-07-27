@@ -1,0 +1,303 @@
+<!DOCTYPE >
+<html lang="fr">
+  <head>
+    <title>api-partenaires-mobilis</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Mise en forme avec Tailwind CSS ()-->
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet pour le plan avec extension de localisation -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js"
+      charset="utf-8"
+    ></script>
+
+    <!-- AlpineJS pour le templating -->
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <style>
+      .header a:not([href|="#"])::after {
+        content: " ";
+        background-image: url("images/href.svg");
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        vertical-align: text-bottom;
+        margin-left: 0.15em;
+      }
+
+      .leaflet-control-locate {
+        font-size: 1.7em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="py-10 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <p
+            class="
+              mt-2
+              text-3xl
+              leading-8
+              font-extrabold
+              tracking-tight
+              text-gray-900
+              sm:text-4xl
+            "
+            x-data="{buildInfo : {}}"
+            x-init="buildInfo = await (await fetch('/actuator/info')).json()"
+          >
+            <span x-text="buildInfo.build?.name"></span>
+            <span
+              class="
+                rounded-full
+                bg-gradient-to-r
+                from-indigo-500
+                to-indigo-400
+                text-white text-xs
+                py-1
+                px-2
+                ml-1
+                font-thin font-mono
+              "
+              x-text="buildInfo.build?.version"
+            ></span>
+          </p>
+          <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+            POC d'intégration d'un service REST SpringBoot sous forme d'image
+            Docker. Ce service met à disposition la liste des boutiques de
+            prestataires Mobilis.
+          </p>
+        </div>
+
+        <div class="header mt-10">
+          <dl
+            class="
+              space-y-10
+              md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10
+            "
+          >
+            <div class="relative">
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-gradient-to-r
+                    from-indigo-500
+                    to-indigo-400
+                    text-white
+                  "
+                >
+                  <!-- Heroicon name: cog -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </div>
+                <a
+                  href="/api"
+                  class="ml-16 text-lg leading-6 font-medium text-gray-900"
+                >
+                  /api
+                </a>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                Récupération des partenaires au format
+                <span class="font-mono">JSON</span> ou
+                <a class="font-mono" href="https://geojson.org/">GeoJSON</a> à
+                partir d'un point de localisation et d'un rayon
+              </dd>
+            </div>
+
+            <div class="relative">
+              <dt>
+                <div
+                  class="
+                    absolute
+                    flex
+                    items-center
+                    justify-center
+                    h-12
+                    w-12
+                    rounded-md
+                    bg-gradient-to-r
+                    from-indigo-500
+                    to-indigo-400
+                    text-white
+                  "
+                >
+                  <!-- Heroicon name: outline/database -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+                    />
+                  </svg>
+                </div>
+                <a
+                  href="/h2-console"
+                  class="ml-16 text-lg leading-6 font-medium text-gray-900"
+                >
+                  /h2-console
+                </a>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-500">
+                Base de données en mémoire avec les extensions spaciales
+                <a href="http://www.h2gis.org/">H2GIS</a> permettant
+                d'intérroger les partenaires à partir de leurs position
+                géographique
+              </dd>
+            </div>
+          </dl>
+        </div>
+        <div id="mapid" class="flex-auto mt-10 w-full h-3/6"></div>
+        <div
+          x-data
+          class="text-gray-400 text-sm text-center"
+          x-show="$store.radius"
+        >
+          Votre position a été déterminée avec une précision de
+          <span x-text="$store.radius"></span> mètres
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("alpine:init", () =>
+        Alpine.store("radius", false)
+      );
+
+      var map = L.map("mapid").setView([-22.279575, 166.442412], 10);
+
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png"
+      ).addTo(map);
+
+      var lc = L.control.locate({ flyTo: true }).addTo(map).start();
+      var geojson,
+        lastLatLng = {},
+        lastAccuracy;
+
+      map.on("locationfound", (e) => {
+        if (
+          e.latlng.lat != lastLatLng.lat ||
+          e.latlng.lng != lastLatLng.lng ||
+          e.accuracy != lastAccuracy
+        ) {
+          lastLatLng = e.latlng;
+          lastAccuracy = e.accuracy;
+
+          Alpine.store("radius", e.accuracy);
+
+          fetch(
+            `http://localhost:8080/api/partenaires?nearBy.lat=${e.latlng.lat}&nearBy.lon=${e.latlng.lng}&nearBy.distance=${e.accuracy}`
+          )
+            .then((r) => r.json())
+            .then(
+              (data) =>
+                (geojson = L.geoJSON(data, {
+                  onEachFeature: onEachFeature,
+                }).addTo(map))
+            );
+        }
+      });
+
+      map.on("locatedeactivate", (e) => {
+        Alpine.store("radius", false);
+        geojson.remove();
+        lastLatLng = {};
+        lastAccuracy = null;
+      });
+
+      function onEachFeature(feature, layer) {
+        layer.bindPopup(`
+          <h3 class="text-lg leading-4 font-medium text-gray-900">
+            ${feature.properties.nom}
+            ${feature.properties.url_fb && `
+            <a class="pl-2" href="${feature.properties.url_fb}"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+            ` || ''}
+         </h3>
+          <div class="flex mt-4 max-w-2xl text-sm text-gray-500">
+            ${feature.properties.url_gmaps && `
+            <a class="p-2 text-lg" href="${feature.properties.url_gmaps}"><i class="fa fa-2 fa-map-marker" aria-hidden="true"></i></a>
+            ` || ''}
+            <div>
+            ${
+              feature.properties.adresse +
+              (feature.properties.quartier
+                ? " - " + feature.properties.quartier
+                : "")
+            }
+            - ${feature.properties.ville}
+            </div>
+          </div>
+          <p class="text-center mt-1 max-w-2xl text-base text-gray-500">
+            <a href="tel:${feature.properties.telephone}">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              ${feature.properties.telephone}
+            </a>
+          </p>
+        `);
+      }
+    </script>
+  </body>
+</html>
