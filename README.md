@@ -60,6 +60,8 @@ Une image docker est généré via le plugin JIB pour maven (qui permet notammen
 - `docker run --rm -p 8080:8080 ghcr.io/opt-nc/api-partenaires-mobilis:snapshot` pour la denière snapshot
 - `docker run --rm -p 8080:8080 ghcr.io/opt-nc/api-partenaires-mobilis:latest` pour la denière release
 
+_note: il faut au préalable avoir fait un [docker login](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry)_
+
 Pour tester :
 - Soit un `curl http://localhost:8080/api/partenaires`
 - Soit https://jsfiddle.net/3t75pke9/2/ (affichage sur une carte à partir des coordonnées GPS)
