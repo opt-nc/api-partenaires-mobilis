@@ -136,6 +136,10 @@
                     </from>
                     <to>
                         <image>opt-nc/${project.name}</image>
+                        <auth>
+                            <username>${registry_login}</username>
+                            <password>${registry_pwd}</password>
+                    </auth>
                     </to>
                     <container>
                         <ports>

@@ -59,4 +59,4 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build with Maven and publish on Docker Hub with jib
-        run: mvn compile jib:build -Djib.to.auth.username=${{secrets.OPT_DOCKERHUB_LOGIN}} -Djib.to.auth.password=${{secrets.OPT_DOCKERHUB_PASSWORD}} -Djib.to.tags=${{steps.image_tags.outputs.tags}}
+        run: mvn compile jib:build -Dregistry_login=${{secrets.OPT_DOCKERHUB_LOGIN}} -Dregistry_pwd=${{secrets.OPT_DOCKERHUB_PASSWORD}} -Djib.to.tags=${{steps.image_tags.outputs.tags}}
