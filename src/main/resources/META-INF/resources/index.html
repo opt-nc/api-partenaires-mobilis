@@ -73,7 +73,7 @@
               text-gray-900
               sm:text-4xl
             "
-            x-data="{buildInfo : {}}"
+            x-data="{buildInfo: {}}"
             x-init="buildInfo = await (await fetch('/actuator/info')).json()"
           >
             <span x-text="buildInfo.build?.name"></span>
@@ -99,12 +99,16 @@
           </p>
         </div>
 
-        <div class="header mt-10">
+        <div
+          class="header mt-10"
+          x-data="{h2Console: false}"
+          x-init="h2Console = await (await fetch('/h2-console', {method: 'HEAD'})).status === 200">
           <dl
             class="
               space-y-10
-              md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10
+              md:space-y-0 md:grid md:gap-x-8 md:gap-y-10
             "
+            x-bind:class="h2Console ? 'md:grid-cols-2' : 'md:grid-cols-1'"
           >
             <div class="relative">
               <dt>
@@ -160,7 +164,7 @@
               </dd>
             </div>
 
-            <div class="relative">
+            <div class="relative" x-show="h2Console">
               <dt>
                 <div
                   class="
@@ -297,7 +301,7 @@
             </p>
           `);
         }
-        });
+      });
     </script>
   </body>
 </html>
