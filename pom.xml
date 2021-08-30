@@ -141,7 +141,8 @@
                         <ports>
                             <port>8080</port>
                         </ports>
-                    </container>
+						<creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+					</container>
                 </configuration>
             </plugin>
         </plugins>
