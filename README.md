@@ -64,12 +64,10 @@ curl 'http://localhost:8080/api/partenaires?nearBy.lon=166.448744&nearBy.lat=-22
 ## Docker
 
 Une image docker est généré via le plugin JIB pour maven (qui permet notamment de générer une image Docker sans avoir le client docker installé), elle peut-être lancée de la manière avec la commande suivante :
-- `docker run --rm -p 8080:8080 opt-nc/api-partenaires-mobilis:snapshot` pour la denière snapshot
-- `docker run --rm -p 8080:8080 opt-nc/api-partenaires-mobilis:latest` pour la denière release
+- `docker run --rm -p 8080:8080 optnc/api-partenaires-mobilis:snapshot` pour la denière snapshot
+- `docker run --rm -p 8080:8080 optnc/api-partenaires-mobilis:latest` pour la denière release
 
-Pour tester :
-- Soit un `curl http://localhost:8080/api/partenaires`
-- Soit https://jsfiddle.net/3t75pke9/2/ (affichage sur une carte à partir des coordonnées GPS)
+Pour tester : http://localhost:8080 depuis votre navigateur
 
 ## Doc de l'API REST
 
