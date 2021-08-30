@@ -71,4 +71,4 @@ Pour tester : http://localhost:8080 depuis votre navigateur
 
 ## Doc de l'API REST
 
-SwaggerUI accessible directement à la raçine du service `http://localhost:8080/` depuis un navigateur
+SwaggerUI accessible directement à la raçine du service `http://localhost:8080/api` depuis un navigateur
