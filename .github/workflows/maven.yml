@@ -29,6 +29,6 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Publish with jib
+    - name: Publish on Docker Hub with jib
       run: mvn -B -Djib.to.auth.username=${{ github.actor }} -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }} compile jib:build
       if: github.ref == 'refs/heads/main'

@@ -129,16 +129,13 @@
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.1.4</version>
                 <configuration>
                     <from>
                         <image>adoptopenjdk/openjdk11:alpine-jre</image>
                     </from>
                     <to>
                         <image>ghcr.io/opt-nc/${project.name}:${project.version}</image>
-                        <tags>
-                            <tag>${docker.tag}</tag>
-                        </tags>
                     </to>
                     <container>
                         <ports>
@@ -146,28 +143,6 @@
                         </ports>
                     </container>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <!-- Tag docker 'latest' ou 'snapshot' -->
-                    <execution>
-                        <id>build-helper-regex-docker-tag</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>regex-property</goal>
-                        </goals>
-                        <configuration>
-                            <name>docker.tag</name>
-                            <value>${project.version}</value>
-                            <regex>.*-SNAPSHOT</regex>
-                            <replacement>snapshot</replacement>
-                            <failIfNoMatch>latest</failIfNoMatch>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

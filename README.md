@@ -1,3 +1,10 @@
+![Build](https://github.com/opt-nc/api-partenaires-mobilis/actions/workflows/maven.yml/badge.svg)
+![Docker Image](https://img.shields.io/badge/docker-homepage-blue)(https://hub.docker.com/repository/docker/optnc/api-partenaires-mobilis)
+![Docker Pulls](https://img.shields.io/docker/pulls/optnc/optnc/api-partenaires-mobilis)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/optnc/optnc/api-partenaires-mobilis)
+![Docker Stars](https://img.shields.io/docker/stars/optnc/optnc/api-partenaires-mobilis)
+![Docker Image Version (latest by date)](https://img.shields.io/docker/v/optnc/optnc/api-partenaires-mobilis?arch=amd64&sort=date)
+
 # api-prestataires-mobilis
 
 POC d'intégration d'un service REST SpringBoot sous forme d'image Docker.
@@ -57,10 +64,8 @@ curl 'http://localhost:8080/api/partenaires?nearBy.lon=166.448744&nearBy.lat=-22
 ## Docker
 
 Une image docker est généré via le plugin JIB pour maven (qui permet notamment de générer une image Docker sans avoir le client docker installé), elle peut-être lancée de la manière avec la commande suivante :
-- `docker run --rm -p 8080:8080 ghcr.io/opt-nc/api-partenaires-mobilis:snapshot` pour la denière snapshot
-- `docker run --rm -p 8080:8080 ghcr.io/opt-nc/api-partenaires-mobilis:latest` pour la denière release
-
-_note: il faut au préalable avoir fait un [docker login](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry)_
+- `docker run --rm -p 8080:8080 opt-nc/api-partenaires-mobilis:snapshot` pour la denière snapshot
+- `docker run --rm -p 8080:8080 opt-nc/api-partenaires-mobilis:latest` pour la denière release
 
 Pour tester :
 - Soit un `curl http://localhost:8080/api/partenaires`
