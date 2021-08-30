@@ -63,7 +63,7 @@ curl 'http://localhost:8080/api/partenaires?nearBy.lon=166.448744&nearBy.lat=-22
 
 ## Docker
 
-Une image docker est généré via le plugin JIB pour maven (qui permet notamment de générer une image Docker sans avoir le client docker installé), elle peut-être lancée de la manière avec la commande suivante :
+Une image docker est générée via le plugin JIB pour maven (qui permet notamment de générer une image Docker sans avoir le client docker installé), elle peut-être lancée de la manière avec la commande suivante :
 - `docker run --rm -p 8080:8080 optnc/api-partenaires-mobilis:snapshot` pour la denière snapshot
 - `docker run --rm -p 8080:8080 optnc/api-partenaires-mobilis:latest` pour la denière release
 
@@ -71,4 +71,4 @@ Pour tester : http://localhost:8080 depuis votre navigateur
 
 ## Doc de l'API REST
 
-SwaggerUI accessible directement à la raçine du service `http://localhost:8080/api` depuis un navigateur
+SwaggerUI accessible directement à la raçine du service http://localhost:8080/api depuis un navigateur
