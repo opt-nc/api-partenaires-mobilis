@@ -21,6 +21,7 @@ public class Partenaire {
     private Long id;
     @Column(nullable = false)
     private String nom;
+    private String ridet;
     private String telephone;
     @JsonProperty("url_gmaps")
     private String urlGmaps;
@@ -49,6 +50,14 @@ public class Partenaire {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getRidet() {
+        return ridet;
+    }
+
+    public void setRidet(String ridet) {
+        this.ridet = ridet;
     }
 
     public String getTelephone() {

@@ -79,6 +79,7 @@ public class PartenaireRessource {
         feature.setProperties(new LinkedHashMap<>()); // to preserve input order
 
         feature.setProperty("nom", partenaire.getNom());
+        feature.setProperty("ridet", partenaire.getRidet());
         feature.setProperty("adresse", partenaire.getAdresse());
         feature.setProperty("quartier", partenaire.getQuartier());
         feature.setProperty("ville", partenaire.getVille());
