@@ -44,8 +44,7 @@ jobs:
         id : image_tags
         run: |
            if [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/}
-            TAGS="latest,${VERSION}"
+            TAGS="latest,${GITHUB_REF#refs/tags/}"
            else
             TAGS="snapshot"
            fi
@@ -60,4 +59,4 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build with Maven and publish on Docker Hub with jib
-        run: mvn compile -Djib.to.auth.username=${{secrets.OPT_DOCKERHUB_LOGIN}} -Djib.to.auth.password=${{secrets.OPT_DOCKERHUB_PASSWORD}} -Djib.to.tags=${{steps.image_tags.outputs.tags}} jib:build
+        run: mvn compile jib:build -Djib.to.auth.username=${{secrets.OPT_DOCKERHUB_LOGIN}} -Djib.to.auth.password=${{secrets.OPT_DOCKERHUB_PASSWORD}} -Djib.to.tags=${{steps.image_tags.outputs.tags}}
