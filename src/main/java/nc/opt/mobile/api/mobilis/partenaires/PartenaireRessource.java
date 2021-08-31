@@ -19,6 +19,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,14 +39,14 @@ public class PartenaireRessource {
     }
 
     @GetMapping(produces = "application/geo+json")
-    public FeatureCollection getGeoJSON(@Valid @ParameterObject RequestParams params) {
+    public FeatureCollection listGeoJSON(@Valid @ParameterObject RequestParams params) {
         FeatureCollection collection = new FeatureCollection();
-        collection.addAll(get(params).stream().map(this::map).collect(Collectors.toList()));
+        collection.addAll(list(params).stream().map(this::map).collect(Collectors.toList()));
         return collection;
     }
 
     @GetMapping(produces = "application/json")
-    public List<Partenaire> get(@Valid @ParameterObject RequestParams params) {
+    public List<Partenaire> list(@Valid @ParameterObject RequestParams params) {
         if (params.getNearBy() != null) {
             return repository.findByPositionDistance(
                 String.format("POINT(%s %s)", params.getNearBy().getLon(), params.getNearBy().getLat()),
@@ -53,6 +54,11 @@ public class PartenaireRessource {
         } else {
             return repository.findAll();
         }
+    }
+
+    @GetMapping(path = "{id}", produces = "application/json")
+    public Partenaire get(@PathVariable Long id) {
+        return repository.findById(id).orElse(null);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -73,11 +79,12 @@ public class PartenaireRessource {
         feature.setProperties(new LinkedHashMap<>()); // to preserve input order
 
         feature.setProperty("nom", partenaire.getNom());
+        feature.setProperty("ridet", partenaire.getRidet());
         feature.setProperty("adresse", partenaire.getAdresse());
         feature.setProperty("quartier", partenaire.getQuartier());
         feature.setProperty("ville", partenaire.getVille());
         feature.setProperty("telephone", partenaire.getTelephone());
-        
+
         if (partenaire.getUrlGmaps() != null) {
             feature.setProperty("url_gmaps", partenaire.getUrlGmaps());
         }

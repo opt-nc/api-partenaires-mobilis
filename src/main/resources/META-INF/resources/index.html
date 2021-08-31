@@ -73,7 +73,7 @@
               text-gray-900
               sm:text-4xl
             "
-            x-data="{buildInfo : {}}"
+            x-data="{buildInfo: {}}"
             x-init="buildInfo = await (await fetch('/actuator/info')).json()"
           >
             <span x-text="buildInfo.build?.name"></span>
@@ -99,12 +99,16 @@
           </p>
         </div>
 
-        <div class="header mt-10">
+        <div
+          class="header mt-10"
+          x-data="{h2Console: false}"
+          x-init="h2Console = await (await fetch('/h2-console', {method: 'HEAD'})).status === 200">
           <dl
             class="
               space-y-10
-              md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10
+              md:space-y-0 md:grid md:gap-x-8 md:gap-y-10
             "
+            x-bind:class="h2Console ? 'md:grid-cols-2' : 'md:grid-cols-1'"
           >
             <div class="relative">
               <dt>
@@ -160,7 +164,7 @@
               </dd>
             </div>
 
-            <div class="relative">
+            <div class="relative" x-show="h2Console">
               <dt>
                 <div
                   class="
@@ -222,82 +226,82 @@
     </div>
 
     <script>
-      document.addEventListener("alpine:init", () =>
+      document.addEventListener("alpine:init", () => {
         Alpine.store("radius", false)
-      );
 
-      var map = L.map("mapid").setView([-22.279575, 166.442412], 10);
+        var map = L.map("mapid").setView([-22.279575, 166.442412], 10);
 
-      L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png"
-      ).addTo(map);
+        L.tileLayer(
+          "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png"
+        ).addTo(map);
 
-      var lc = L.control.locate({ flyTo: true }).addTo(map).start();
-      var geojson,
-        lastLatLng = {},
-        lastAccuracy;
+        var lc = L.control.locate({ flyTo: true }).addTo(map).start();
+        var geojson,
+          lastLatLng = {},
+          lastAccuracy;
 
-      map.on("locationfound", (e) => {
-        if (
-          e.latlng.lat != lastLatLng.lat ||
-          e.latlng.lng != lastLatLng.lng ||
-          e.accuracy != lastAccuracy
-        ) {
-          lastLatLng = e.latlng;
-          lastAccuracy = e.accuracy;
+        map.on("locationfound", (e) => {
+          if (
+            e.latlng.lat != lastLatLng.lat ||
+            e.latlng.lng != lastLatLng.lng ||
+            e.accuracy != lastAccuracy
+          ) {
+            lastLatLng = e.latlng;
+            lastAccuracy = e.accuracy;
 
-          Alpine.store("radius", e.accuracy);
+            Alpine.store("radius", e.accuracy);
 
-          fetch(
-            `http://localhost:8080/api/partenaires?nearBy.lat=${e.latlng.lat}&nearBy.lon=${e.latlng.lng}&nearBy.distance=${e.accuracy}`
-          )
-            .then((r) => r.json())
-            .then(
-              (data) =>
-                (geojson = L.geoJSON(data, {
-                  onEachFeature: onEachFeature,
-                }).addTo(map))
-            );
+            fetch(
+              `http://localhost:8080/api/partenaires?nearBy.lat=${e.latlng.lat}&nearBy.lon=${e.latlng.lng}&nearBy.distance=${e.accuracy}`
+            )
+              .then((r) => r.json())
+              .then(
+                (data) =>
+                  (geojson = L.geoJSON(data, {
+                    onEachFeature: onEachFeature,
+                  }).addTo(map))
+              );
+          }
+        });
+
+        map.on("locatedeactivate", (e) => {
+          Alpine.store("radius", false);
+          geojson.remove();
+          lastLatLng = {};
+          lastAccuracy = null;
+        });
+
+        function onEachFeature(feature, layer) {
+          layer.bindPopup(`
+            <h3 class="text-lg leading-4 font-medium text-gray-900">
+              ${feature.properties.nom}
+              ${feature.properties.url_fb && `
+              <a class="pl-2" href="${feature.properties.url_fb}"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+              ` || ''}
+          </h3>
+            <div class="flex mt-4 max-w-2xl text-sm text-gray-500">
+              ${feature.properties.url_gmaps && `
+              <a class="p-2 text-lg" href="${feature.properties.url_gmaps}"><i class="fa fa-2 fa-map-marker" aria-hidden="true"></i></a>
+              ` || ''}
+              <div>
+              ${
+                feature.properties.adresse +
+                (feature.properties.quartier
+                  ? " - " + feature.properties.quartier
+                  : "")
+              }
+              - ${feature.properties.ville}
+              </div>
+            </div>
+            <p class="text-center mt-1 max-w-2xl text-base text-gray-500">
+              <a href="tel:${feature.properties.telephone}">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                ${feature.properties.telephone}
+              </a>
+            </p>
+          `);
         }
       });
-
-      map.on("locatedeactivate", (e) => {
-        Alpine.store("radius", false);
-        geojson.remove();
-        lastLatLng = {};
-        lastAccuracy = null;
-      });
-
-      function onEachFeature(feature, layer) {
-        layer.bindPopup(`
-          <h3 class="text-lg leading-4 font-medium text-gray-900">
-            ${feature.properties.nom}
-            ${feature.properties.url_fb && `
-            <a class="pl-2" href="${feature.properties.url_fb}"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-            ` || ''}
-         </h3>
-          <div class="flex mt-4 max-w-2xl text-sm text-gray-500">
-            ${feature.properties.url_gmaps && `
-            <a class="p-2 text-lg" href="${feature.properties.url_gmaps}"><i class="fa fa-2 fa-map-marker" aria-hidden="true"></i></a>
-            ` || ''}
-            <div>
-            ${
-              feature.properties.adresse +
-              (feature.properties.quartier
-                ? " - " + feature.properties.quartier
-                : "")
-            }
-            - ${feature.properties.ville}
-            </div>
-          </div>
-          <p class="text-center mt-1 max-w-2xl text-base text-gray-500">
-            <a href="tel:${feature.properties.telephone}">
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              ${feature.properties.telephone}
-            </a>
-          </p>
-        `);
-      }
     </script>
   </body>
 </html>

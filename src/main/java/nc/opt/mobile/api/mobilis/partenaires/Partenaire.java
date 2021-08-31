@@ -1,5 +1,6 @@
 package nc.opt.mobile.api.mobilis.partenaires;
 
+import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,17 +19,21 @@ public class Partenaire {
 
     @Id
     private Long id;
+    @Column(nullable = false)
     private String nom;
+    private String ridet;
     private String telephone;
     @JsonProperty("url_gmaps")
     private String urlGmaps;
     @JsonProperty("url_fb")
     private String urlFb;
+    @Column(nullable = false)
     private String adresse;
     private String quartier;
     private String ville;
 
     @Convert(converter = PointConverter.class)
+    @Column(columnDefinition = "GEOMETRY", nullable = false)
     private Point position;
 
     public Long getId() {
@@ -45,6 +50,14 @@ public class Partenaire {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getRidet() {
+        return ridet;
+    }
+
+    public void setRidet(String ridet) {
+        this.ridet = ridet;
     }
 
     public String getTelephone() {

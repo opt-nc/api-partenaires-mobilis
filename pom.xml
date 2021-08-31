@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.3</version>
+        <version>2.5.4</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>nc.opt.mobile</groupId>
@@ -14,6 +14,10 @@
     <description>POC d&apos;intégration d&apos;un service REST dans Docker puis dans Kubernetes</description>
     <properties>
         <java.version>11</java.version>
+        <springdoc-openapi-ui.version>1.5.9</springdoc-openapi-ui.version>
+        <h2.version>1.4.197</h2.version>
+        <h2gis.version>1.5.0</h2gis.version>
+        <geojson-jackson.version>1.14</geojson-jackson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -37,7 +41,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.5.9</version>
+            <version>${springdoc-openapi-ui.version}</version>
         </dependency>
 
         <dependency>
@@ -50,21 +54,21 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <!-- Avec la 1.4.200 ça passe pas l'init de h2gis -->
-            <version>1.4.197</version>
+            <version>${h2.version}</version>
             <scope>runtime</scope>
         </dependency>
         <!-- extension H2 pour faire du spactial -->
         <dependency>
             <groupId>org.orbisgis</groupId>
             <artifactId>h2gis</artifactId>
-            <version>1.5.0</version>
+            <version>${h2gis.version}</version>
         </dependency>
 
         <!-- Permettre de convertir une structure GeoJON avec Jackson -->
         <dependency>
             <groupId>de.grundid.opendatalab</groupId>
             <artifactId>geojson-jackson</artifactId>
-            <version>1.14</version>
+            <version>${geojson-jackson.version}</version>
         </dependency>
 
         <dependency>
@@ -125,45 +129,21 @@
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.1.4</version>
                 <configuration>
                     <from>
                         <image>adoptopenjdk/openjdk11:alpine-jre</image>
                     </from>
                     <to>
-                        <image>ghcr.io/opt-nc/${project.name}:${project.version}</image>
-                        <tags>
-                            <tag>${docker.tag}</tag>
-                        </tags>
+                        <image>optnc/${project.name}</image>
                     </to>
                     <container>
                         <ports>
                             <port>8080</port>
                         </ports>
-                    </container>
+						<creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+					</container>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <!-- Tag docker 'latest' ou 'snapshot' -->
-                    <execution>
-                        <id>build-helper-regex-docker-tag</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>regex-property</goal>
-                        </goals>
-                        <configuration>
-                            <name>docker.tag</name>
-                            <value>${project.version}</value>
-                            <regex>.*-SNAPSHOT</regex>
-                            <replacement>snapshot</replacement>
-                            <failIfNoMatch>latest</failIfNoMatch>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
