@@ -38,9 +38,9 @@ jobs:
         id : image_tags
         run: |
            if [[ $GITHUB_REF == refs/tags/* ]]; then
-            TAGS="latest,${GITHUB_REF#refs/tags/}"
+            TAGS="latest,stable,${GITHUB_REF#refs/tags/}"
            else
-            TAGS="snapshot"
+            TAGS="latest"
            fi
            echo ::set-output name=tags::${TAGS}
 
