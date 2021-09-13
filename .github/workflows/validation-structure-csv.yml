@@ -11,6 +11,14 @@ name: Validation structure CSV sur Postgres
 
 on: [push, pull_request]
 jobs:
+  docker:
+    runs-on: ubuntu-latest
+    container:
+      image: postgres:alpine
+      env:
+        POSTGRES_PASSWORD: postgres
+    steps:
+      - run: docker ps
   validation:
     runs-on: ubuntu-latest
     container:
