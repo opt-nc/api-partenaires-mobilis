@@ -37,4 +37,4 @@ jobs:
       - name: init schema
         run: psql -a -f .github/workflows/schema.sql
       - name: load csv with COPY
-        run: cat src/main/resources/partenaires.csv | psql -c "COPY partenaire from STDIN WITH (FORMAT csv, HEADER true)
+        run: cat src/main/resources/partenaires.csv | psql -c "COPY partenaire from STDIN WITH (FORMAT csv, HEADER true)"
