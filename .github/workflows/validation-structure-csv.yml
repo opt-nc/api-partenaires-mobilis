@@ -4,33 +4,35 @@
 #   3. tenter un chargement via la commande COPY
 #
 # Plus d'infos ici : https://github.com/opt-nc/api-partenaires-mobilis/issues/10
-# Pour la doc: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idcontainer
+# Pour démarrer un conteneur séparé, cela s'appelle un "service" dans les GitHub action's: https://docs.github.com/en/actions/guides/about-service-containers 
 #
 # Par ailleurs, les validations sont faites aussi au niveau JUnit car cela avait été fait ainsi au début et parce que c'est plus pratique à tester en local
 name: Validation structure CSV sur Postgres
 
 on: [push, pull_request]
 jobs:
-  docker:
+  validation-csv:
     runs-on: ubuntu-latest
-    container:
-      image: postgres:alpine
-      env:
-        POSTGRES_PASSWORD: postgres
-    steps:
-      - run: docker ps
-  validation:
-    runs-on: ubuntu-latest
-    container:
-      image: postgres:alpine
-      env:
-        POSTGRES_PASSWORD: postgres
+    services:
+      postgres:
+        image: postgres:alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started (vu sur https://docs.github.com/en/actions/guides/creating-postgresql-service-containers)
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    # paramétrâge psql global
+    env:
+      PGHOST: postgres
+      PGUSER: postgres
+      PGPASSWORD: pass1234
     steps:
       - uses: actions/checkout@v2
-      - name: starts Postgres
-        run: docker-entrypoint.sh & while netstat -lnt | awk '$4 ~ /:5432$/ {exit 1}'; do sleep 1; done
-      - run: ps aux
       - name: init schema
-        run: psql -U postgres -a -f .github/workflows/schema.sql
+        run: psql -a -f .github/workflows/schema.sql
       - name: load csv with COPY
-        run: cat src/main/resources/partenaires.csv | psql -U postgres -c "COPY partenaire from STDIN WITH (FORMAT csv, HEADER true)
+        run: cat src/main/resources/partenaires.csv | psql -c "COPY partenaire from STDIN WITH (FORMAT csv, HEADER true)
