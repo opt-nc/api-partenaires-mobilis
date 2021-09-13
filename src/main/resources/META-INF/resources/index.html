@@ -74,7 +74,7 @@
               sm:text-4xl
             "
             x-data="{buildInfo: {}}"
-            x-init="buildInfo = await (await fetch('/actuator/info')).json()"
+            x-init="buildInfo = await (await fetch('/info')).json()"
           >
             <span x-text="buildInfo.build?.name"></span>
             <span
