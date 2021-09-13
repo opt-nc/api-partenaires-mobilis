@@ -4,12 +4,16 @@
 #   3. tenter un chargement via la commande COPY
 #
 # Plus d'infos ici : https://github.com/opt-nc/api-partenaires-mobilis/issues/10
-# Pour démarrer un conteneur séparé, cela s'appelle un "service" dans les GitHub action's: https://docs.github.com/en/actions/guides/about-service-containers 
+# Pour démarrer un conteneur séparé, cela s'appelle un "service" dans les GitHub action's: https://docs.github.com/en/actions/guides/about-service-containers
 #
 # Par ailleurs, les validations sont faites aussi au niveau JUnit car cela avait été fait ainsi au début et parce que c'est plus pratique à tester en local
 name: Validation structure CSV sur Postgres
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - src/main/resources/partenaires.csv
+
 jobs:
   validation-csv:
     runs-on: ubuntu-latest
