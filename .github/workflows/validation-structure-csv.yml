@@ -13,6 +13,7 @@ on: [push, pull_request]
 jobs:
   validation-csv:
     runs-on: ubuntu-latest
+    container: ubuntu:latest
     services:
       postgres:
         image: postgres:alpine
@@ -27,7 +28,7 @@ jobs:
 
     # paramétrâge psql global
     env:
-      PGHOST: postgres
+      PGHOST: localhost
       PGUSER: postgres
       PGPASSWORD: pass1234
     steps:
