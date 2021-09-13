@@ -19,7 +19,7 @@ jobs:
         POSTGRES_PASSWORD: postgres
     steps:
       - uses: actions/checkout@v2
-      - run: ps aux | grep postgres
+      - run: ps aux
       - name: init schema
         run: psql -U postgres -a -f .github/workflows/schema.sql
       - name: load csv with COPY
