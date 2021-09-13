@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres
+        image: postgres:alpine
         ports:
           - 5432:5432
         env:
@@ -29,9 +29,9 @@ jobs:
 
     # paramétrâge psql global
     env:
-      PGHOST: localhost
+      PGHOST: localhost # car ce job ne s'éxécute pas dans un conteneur
       PGUSER: postgres
-      PGPASSWORD: pass1234
+      PGPASSWORD: postgres
     steps:
       - uses: actions/checkout@v2
       - name: init schema
