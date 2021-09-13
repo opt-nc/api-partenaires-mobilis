@@ -19,8 +19,8 @@ jobs:
         POSTGRES_PASSWORD: postgres
     steps:
       - uses: actions/checkout@v2
-      - name: stars Postgres
-        run: docker-entrypoint.sh &
+      - name: starts Postgres
+        run: docker-entrypoint.sh & while netstat -lnt | awk '$4 ~ /:5432$/ {exit 1}'; do sleep 1; done
       - run: ps aux
       - name: init schema
         run: psql -U postgres -a -f .github/workflows/schema.sql
