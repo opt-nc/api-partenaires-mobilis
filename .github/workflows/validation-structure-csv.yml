@@ -19,6 +19,8 @@ jobs:
         POSTGRES_PASSWORD: postgres
     steps:
       - uses: actions/checkout@v2
+      - name: stars Postgres
+        run: postgres &
       - run: ps aux
       - name: init schema
         run: psql -U postgres -a -f .github/workflows/schema.sql
