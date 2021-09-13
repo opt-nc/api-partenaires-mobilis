@@ -13,10 +13,11 @@ on: [push, pull_request]
 jobs:
   validation-csv:
     runs-on: ubuntu-latest
-    container: ubuntu:latest
     services:
       postgres:
-        image: postgres:alpine
+        image: postgres
+        ports:
+          - 5432:5432
         env:
           POSTGRES_PASSWORD: postgres
         # Set health checks to wait until postgres has started (vu sur https://docs.github.com/en/actions/guides/creating-postgresql-service-containers)
