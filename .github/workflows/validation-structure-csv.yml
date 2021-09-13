@@ -1,0 +1,25 @@
+# Le but de cette action est de valider techniquement sur GitHub actions les points suivants :
+#   1. Démarrer un psql
+#   2. créer une table dans psql
+#   3. tenter un chargement via la commande COPY
+#
+# Plus d'infos ici : https://github.com/opt-nc/api-partenaires-mobilis/issues/10
+# Pour la doc: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idcontainer
+#
+# Par ailleurs, les validations sont faites aussi au niveau JUnit car cela avait été fait ainsi au début et parce que c'est plus pratique à tester en local
+name: Validation structure CSV sur Postgres
+
+on: [push, pull_request]
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    container:
+      image: postgres:alpine
+      env:
+        POSTGRES_PASSWORD: postgres
+    steps:
+      - uses: actions/checkout@v2
+      - name: init schema
+        run: psql -a -f .github/workflows/schema.sql
+      - name: load csv with COPY
+        run: cat src/main/resources/partenaires.csv | psql -U postgres -c "COPY partenaire from STDIN WITH (FORMAT csv, HEADER true)
