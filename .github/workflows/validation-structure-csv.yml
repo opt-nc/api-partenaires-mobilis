@@ -20,6 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: init schema
-        run: psql -a -f .github/workflows/schema.sql
+        run: psql -U postgres -a -f .github/workflows/schema.sql
       - name: load csv with COPY
         run: cat src/main/resources/partenaires.csv | psql -U postgres -c "COPY partenaire from STDIN WITH (FORMAT csv, HEADER true)
