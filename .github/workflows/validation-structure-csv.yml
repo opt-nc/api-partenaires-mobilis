@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: stars Postgres
-        run: postgres &
+        run: docker-entrypoint.sh &
       - run: ps aux
       - name: init schema
         run: psql -U postgres -a -f .github/workflows/schema.sql
