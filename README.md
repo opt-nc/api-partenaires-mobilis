@@ -10,6 +10,11 @@
 POC d'intégration d'un service REST SpringBoot sous forme d'image Docker.
 Ce service met à disposition la liste des boutiques de prestataires Mobilis.
 
+# 🕹️Jouer avec l'API tout de suite !
+
+Un cours dédié a été créé sur KataCoda : https://www.katacoda.com/opt-labs/courses/partenaires-mobilis
+Tout y est abordé, les feedbacks sont bienvenus, par des issues idéalement.
+
 ## Lancement en DEV
 
 `./mvnw spring-boot:run`
