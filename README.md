@@ -5,7 +5,7 @@
 ![Docker Stars](https://img.shields.io/docker/stars/optnc/api-partenaires-mobilis)
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/optnc/api-partenaires-mobilis?arch=amd64&sort=date)
 
-# api-prestataires-mobilis
+# API des partenaires Mobilis de l'OPT-NC
 
 POC d'intégration d'un service REST SpringBoot sous forme d'image Docker.
 Ce service met à disposition la liste des boutiques de prestataires Mobilis.
