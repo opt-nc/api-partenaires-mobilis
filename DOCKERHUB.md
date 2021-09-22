@@ -21,5 +21,9 @@ Cette API a pour vocation à servir ces informations sous la forme d'un service 
 
 Pour découvrir (aucun prérequis nécessaire) comment installer et utiliser cette API, rendez-vous directement sur le cours dédié sur [KataCoda](https://www.katacoda.com/opt-labs/courses/partenaires-mobilis).
 
+# 🙏 Feedbacks
+
 Si vous appréciez l'approche, n'oubliez pas d'ajouter l'image à vos favoris, cela nous donnera un feedback sur la popularité de cette image (en plus du
 nombre de pulls).
+
+Un [projet communautaire dédié](https://github.com/opt-nc/api-partenaires-mobilis-contribs) est disponible pour récupérer vos feedacks et idées.
