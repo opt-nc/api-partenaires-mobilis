@@ -46,10 +46,10 @@
         class="
           z-1000
           w-screen
-          h-44
-          absolute
+          h-max-1/4
+          fixed
           md:static
-          bottom-6
+          bottom-5
           md:left
           flex
           justify-center
@@ -162,7 +162,7 @@
     </div>
 
     <div
-      class="z-1000 w-full text-xs text-gray-500 text-center absolute bottom-1"
+      class="z-1000 w-full text-xs text-gray-500 text-center fixed bottom-1"
       x-data="{buildInfo: {}}"
       x-init="buildInfo = await (await fetch('/info')).json()"
     >
