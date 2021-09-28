@@ -150,7 +150,8 @@
 
       <div
         id="mapid"
-        @map:locationfound.debounce="loadByPosition"
+        @map:locationfound.debounce="loadByPosition($event.detail.center)"
+        @map:locationerror="loadByPosition()"
         @map:click="click($event.detail.feature)"
         class="flex-auto w-screen h-screen md:w-auto md:h-auto"
       ></div>
@@ -185,8 +186,8 @@
             this.load();
           },
 
-          loadByPosition(e) {
-            this.center = e ? e.detail.center : map.getCenter();
+          loadByPosition(center) {
+            this.center = center ? center : map.getCenter();
             this.load();
           },
 
@@ -243,6 +244,7 @@
             flyTo: true,
             icon: 'ti ti-gps',
             iconLoading: 'ti ti-loader',
+            onLocationError: () => dispatch('locationerror')
           })
           .addTo(map);
         lc.start();
@@ -255,6 +257,7 @@
           lc.stopFollowing();
           dispatch('locationfound', { center: e.latlng });
         });
+        map.on('locationerror', e => dispatch('locationerror'));
 
         // appelé sur chaque feature
         function onEachFeature(feature, layer) {
