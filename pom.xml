@@ -9,7 +9,7 @@
     </parent>
     <groupId>nc.opt.mobile</groupId>
     <artifactId>api-partenaires-mobilis</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>api-partenaires-mobilis</name>
     <description>POC d&apos;intégration d&apos;un service REST dans Docker puis dans Kubernetes</description>
     <properties>
