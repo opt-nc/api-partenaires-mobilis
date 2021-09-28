@@ -1,9 +1,13 @@
 <!DOCTYPE >
 <html lang="fr">
   <head>
-    <title>OPT - Partenaires Mobilis</title>
+    <title>API des partenaires Mobilis de l'OPT-NC</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+
+    <!-- Open Graph tags preview sur les réseaux sociaux -->
+    <meta name="og:image" content="/images/preview-open-graph.gif"/>
 
     <!-- CSS-->
     <!-- Leaflet pour le plan avec extension de localisation -->
@@ -42,10 +46,10 @@
         class="
           z-1000
           w-screen
-          h-44
-          absolute
+          h-max-1/4
+          fixed
           md:static
-          bottom-6
+          bottom-5
           md:left
           flex
           justify-center
@@ -158,7 +162,7 @@
     </div>
 
     <div
-      class="z-1000 w-full text-xs text-gray-500 text-center absolute bottom-1"
+      class="z-1000 w-full text-xs text-gray-500 text-center fixed bottom-1"
       x-data="{buildInfo: {}}"
       x-init="buildInfo = await (await fetch('/info')).json()"
     >

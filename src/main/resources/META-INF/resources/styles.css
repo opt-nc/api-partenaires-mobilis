@@ -14,10 +14,10 @@
 
 /* zoom & position gps : déplacement en bas à droite de l'écran */
 .leaflet-control-container {
-  position: absolute;
+  position: fixed;
   z-index: 1000;
   pointer-events: none;
-  top: 58%;
+  bottom: calc(100% / 2 + 5rem);
   right: 4rem;
 }
 .leaflet-control-locate {

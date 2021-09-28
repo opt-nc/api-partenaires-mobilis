@@ -17,12 +17,33 @@ jobs:
         cache: 'maven'
 
     - name: Build with Maven
-      run: mvn -B deploy
+      run: mvn -B test
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  docker-hub:
+  conventional-commits-versionning:
     needs: [build]
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
+    name: Bump version and create release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - name: Install Semantic release and maven-semantic-release plugin
+        run: |
+          npm install -g semantic-release \
+          @conveyal/maven-semantic-release @semantic-release/git \
+          @semantic-release/changelog
+      - name: Run semantic release to bump version and create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release --skip-maven-deploy
+
+  docker-hub:
+    needs: [conventional-commits-versionning]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
     steps:
