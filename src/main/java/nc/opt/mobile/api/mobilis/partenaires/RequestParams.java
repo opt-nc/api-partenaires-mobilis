@@ -1,11 +1,9 @@
 package nc.opt.mobile.api.mobilis.partenaires;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 public class RequestParams {
 
-    @Valid
+    private String q;
+
     private NearBy nearBy;
 
     public NearBy getNearBy() {
@@ -16,12 +14,18 @@ public class RequestParams {
         this.nearBy = nearBy;
     }
 
+    public void setQ(String q) {
+        this.q = q;
+    }
+
+    public String getQ() {
+        return q;
+    }
+
     public static class NearBy {
-        @NotNull
+
         private Double lon;
-        @NotNull
         private Double lat;
-        @NotNull
         private Integer distance;
 
         public Double getLon() {

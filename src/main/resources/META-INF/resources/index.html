@@ -1,305 +1,268 @@
 <!DOCTYPE >
 <html lang="fr">
   <head>
-    <title>api-partenaires-mobilis</title>
+    <title>OPT - Partenaires Mobilis</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Mise en forme avec Tailwind CSS ()-->
-    <link
-      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-
+    <!-- CSS-->
     <!-- Leaflet pour le plan avec extension de localisation -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
       integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
       crossorigin=""
     />
+
+    <!-- Mise en forme avec Tailwind CSS & Tabler-icons pour les icons -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- JS-->
+
+    <!-- Leaflet pour le plan avec extension de localisation -->
     <script
       src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin=""
     ></script>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js"
-      charset="utf-8"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 
     <!-- AlpineJS pour le templating -->
-    <script
-      defer
-      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-
-    <style>
-      .header a:not([href|="#"])::after {
-        content: " ";
-        background-image: url("images/href.svg");
-        width: 1em;
-        height: 1em;
-        display: inline-block;
-        vertical-align: text-bottom;
-        margin-left: 0.15em;
-      }
-
-      .leaflet-control-locate {
-        font-size: 1.7em;
-      }
-    </style>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.js"></script>
   </head>
   <body>
-    <div class="py-10 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:text-center">
-          <p
-            class="
-              mt-2
-              text-3xl
-              leading-8
-              font-extrabold
-              tracking-tight
-              text-gray-900
-              sm:text-4xl
-            "
-            x-data="{buildInfo: {}}"
-            x-init="buildInfo = await (await fetch('/info')).json()"
-          >
-            <span x-text="buildInfo.build?.name"></span>
-            <span
-              class="
-                rounded-full
-                bg-gradient-to-r
-                from-indigo-500
-                to-indigo-400
-                text-white text-xs
-                py-1
-                px-2
-                ml-1
-                font-thin font-mono
-              "
-              x-text="buildInfo.build?.version"
-            ></span>
-          </p>
-          <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            POC d'intégration d'un service REST SpringBoot sous forme d'image
-            Docker. Ce service met à disposition la liste des boutiques de
-            prestataires Mobilis.
-          </p>
+    <div x-data="data" class="flex flex-shrink flex-grow h-screen w-screen">
+      <div
+        class="
+          z-1000
+          w-screen
+          h-44
+          absolute
+          md:static
+          bottom-6
+          md:left
+          flex
+          justify-center
+          md:justify-start md:flex-col md:h-screen md:w-96 md:bg-gray-50
+        "
+      >
+        <div class="rounded-xl m-4 p-3 shadow bg-white md:static fixed top-0">
+          <form x-ref="form" @submit.prevent role="search" novalidate="" class="flex flex-shrink flex-grow m-0">
+            <label for="search-input" id="search-label"
+              ><svg width="20" height="20" viewBox="0 0 20 20">
+                <path
+                  d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
+                  stroke="currentColor"
+                  fill="none"
+                  fill-rule="evenodd"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </label>
+            <input
+              id="search-input"
+              @input.debounce="search($event.target.value)"
+              class="flex-1 outline-none px-2"
+              aria-autocomplete="list"
+              aria-labelledby="search-label"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              placeholder="Recherche"
+              maxlength="64"
+              type="search"
+              enterkeyhint="go"
+              autofocus
+              value=""
+            />
+            <button @click="$refs.form.reset(); search('')">
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <path
+                  d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"
+                  stroke="currentColor"
+                  fill="none"
+                  fill-rule="evenodd"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+          </form>
         </div>
 
         <div
-          class="header mt-10"
-          x-data="{h2Console: false}"
-          x-init="h2Console = await (await fetch('/h2-console', {method: 'HEAD'})).status === 200">
-          <dl
-            class="
-              space-y-10
-              md:space-y-0 md:grid md:gap-x-8 md:gap-y-10
-            "
-            x-bind:class="h2Console ? 'md:grid-cols-2' : 'md:grid-cols-1'"
-          >
-            <div class="relative">
-              <dt>
-                <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-gradient-to-r
-                    from-indigo-500
-                    to-indigo-400
-                    text-white
-                  "
-                >
-                  <!-- Heroicon name: cog -->
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                </div>
-                <a
-                  href="/api"
-                  class="ml-16 text-lg leading-6 font-medium text-gray-900"
-                >
-                  /api
-                </a>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                Récupération des partenaires au format
-                <span class="font-mono">JSON</span> ou
-                <a class="font-mono" href="https://geojson.org/">GeoJSON</a> à
-                partir d'un point de localisation et d'un rayon
-              </dd>
-            </div>
-
-            <div class="relative" x-show="h2Console">
-              <dt>
-                <div
-                  class="
-                    absolute
-                    flex
-                    items-center
-                    justify-center
-                    h-12
-                    w-12
-                    rounded-md
-                    bg-gradient-to-r
-                    from-indigo-500
-                    to-indigo-400
-                    text-white
-                  "
-                >
-                  <!-- Heroicon name: outline/database -->
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
-                    />
-                  </svg>
-                </div>
-                <a
-                  href="/h2-console"
-                  class="ml-16 text-lg leading-6 font-medium text-gray-900"
-                >
-                  /h2-console
-                </a>
-              </dt>
-              <dd class="mt-2 ml-16 text-base text-gray-500">
-                Base de données en mémoire avec les extensions spaciales
-                <a href="http://www.h2gis.org/">H2GIS</a> permettant
-                d'intérroger les partenaires à partir de leurs position
-                géographique
-              </dd>
-            </div>
-          </dl>
-        </div>
-        <div id="mapid" class="flex-auto mt-10 w-full h-3/6"></div>
-        <div
-          x-data
-          class="text-gray-400 text-sm text-center"
-          x-show="$store.radius"
+          x-show="features.length"
+          class="w-full space-x-4 md:space-y-4 md:pr-4 md:pb-4 carousel carousel-center md:carousel-vertical md:bg-gray-50 md:rounded-xl"
+          @scroll.debounce="scroll($event)"
         >
-          Votre position a été déterminée avec une précision de
-          <span x-text="$store.radius"></span> mètres
+          <template x-for="feature in features" :key="feature.id">
+            <div
+              :id="'f' + feature.id"
+              class="
+                carousel-item
+                shadow
+                rounded-xl
+                bg-white
+                p-3
+                w-4/5
+                md:w-auto
+                cursor-pointer
+                transition
+                delay-50
+                duration-300
+                ease-in-out
+              "
+              :class="feature == selection ? 'shadow-lg border-2 border-blue-300' : ''"
+              @click="click(feature, true)"
+            >
+              <h3 class="flex justify-between items-center text-lg leading-4 font-medium text-gray-900">
+                <span x-text="feature.nom"></span>
+                <template x-if="feature.url_fb">
+                  <a class="pl-2 facebook" :href="feature.url_fb" title="Page Facebook" @click.stop></a>
+                </template>
+              </h3>
+              <div class="flex items-center mt-4 max-w-2xl text-sm text-gray-500">
+                <template x-if="feature.url_gmaps">
+                  <a class="px-2 text-2xl" :href="feature.url_gmaps" title="S'y rendre" @click.stop>
+                    <i class="ti ti-road-sign" aria-hidden="true"></i>
+                  </a>
+                </template>
+                <div x-text="feature.adresse + (feature.quartier ? ' - '  + feature.quartier : '') + ' - ' + feature.ville"></div>
+              </div>
+              <p class="text-center mt-1 max-w-2xl text-base text-gray-500">
+                <a :href="'tel:' + feature.telephone" @click.stop title="Appeler">
+                  <i class="ti ti-phone-call" aria-hidden="true"></i>
+                  <span x-text="feature.telephone"></span>
+                </a>
+              </p>
+            </div>
+          </template>
         </div>
       </div>
+
+      <div
+        id="mapid"
+        @map:locationfound.debounce="loadByPosition($event.detail.center)"
+        @map:locationerror="loadByPosition()"
+        @map:click="click($event.detail.feature)"
+        class="flex-auto w-screen h-screen md:w-auto md:h-auto"
+      ></div>
     </div>
 
-    <script>
-      document.addEventListener("alpine:init", () => {
-        Alpine.store("radius", false)
+    <div
+      class="z-1000 w-full text-xs text-gray-500 text-center absolute bottom-1"
+      x-data="{buildInfo: {}}"
+      x-init="buildInfo = await (await fetch('/info')).json()"
+    >
+      <template x-if="buildInfo.build">
+        <div>
+          v<span x-text="buildInfo.build.version"></span> -
+          <a href="https://opt.nc">OPT.nc</a>
+        </div>
+      </template>
+    </div>
 
-        var map = L.map("mapid").setView([-22.279575, 166.442412], 10);
+    <script type="text/javascript">
+      document.addEventListener('alpine:init', () => {
+        // init AlpineJS
+        Alpine.data('data', () => ({
+          features: [],
+          layer: null,
+          selection: null,
+          center: null, // dernière position
+          q: '', // dernière recherche
+          scrollLeft: 0,
 
-        L.tileLayer(
-          "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png"
-        ).addTo(map);
+          search(q) {
+            this.q = q;
+            this.load();
+          },
 
-        var lc = L.control.locate({ flyTo: true }).addTo(map).start();
-        var geojson,
-          lastLatLng = {},
-          lastAccuracy;
+          loadByPosition(center) {
+            this.center = center ? center : map.getCenter();
+            this.load();
+          },
 
-        map.on("locationfound", (e) => {
-          if (
-            e.latlng.lat != lastLatLng.lat ||
-            e.latlng.lng != lastLatLng.lng ||
-            e.accuracy != lastAccuracy
-          ) {
-            lastLatLng = e.latlng;
-            lastAccuracy = e.accuracy;
+          load() {
+            const qText = this.q ? '&q=' + this.q : '';
+            fetch(`/api/partenaires?nearBy.lat=${this.center.lat}&nearBy.lon=${this.center.lng}&nearBy.distance=700000${qText}`)
+              .then(r => r.json())
+              .then(data => {
+                if (this.layer) {
+                  this.layer.remove();
+                }
+                this.layer = L.geoJSON(data, { onEachFeature }).addTo(map);
+                this.features = data.features.map(f => f.properties);
+              });
+          },
 
-            Alpine.store("radius", e.accuracy);
+          scroll($event) {
+            if (this.scrollLeft !== $event.target.scrollLeft) {
+              // déplacement dans le plan au fur et à mesure du scroll (uniquement lorsque c'est en vertical, donc en verision mobile)
+              this.selection = this.features[Math.ceil($event.target.scrollLeft / ($event.target.scrollWidth / this.features.length))];
+              this.showSelection();
+            }
+            this.scrollLeft = $event.target.scrollLeft;
+          },
 
-            fetch(
-              `http://localhost:8080/api/partenaires?nearBy.lat=${e.latlng.lat}&nearBy.lon=${e.latlng.lng}&nearBy.distance=${e.accuracy}`
-            )
-              .then((r) => r.json())
-              .then(
-                (data) =>
-                  (geojson = L.geoJSON(data, {
-                    onEachFeature: onEachFeature,
-                  }).addTo(map))
-              );
-          }
-        });
-
-        map.on("locatedeactivate", (e) => {
-          Alpine.store("radius", false);
-          geojson.remove();
-          lastLatLng = {};
-          lastAccuracy = null;
-        });
-
-        function onEachFeature(feature, layer) {
-          layer.bindPopup(`
-            <h3 class="text-lg leading-4 font-medium text-gray-900">
-              ${feature.properties.nom}
-              ${feature.properties.url_fb && `
-              <a class="pl-2" href="${feature.properties.url_fb}"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-              ` || ''}
-          </h3>
-            <div class="flex mt-4 max-w-2xl text-sm text-gray-500">
-              ${feature.properties.url_gmaps && `
-              <a class="p-2 text-lg" href="${feature.properties.url_gmaps}"><i class="fa fa-2 fa-map-marker" aria-hidden="true"></i></a>
-              ` || ''}
-              <div>
-              ${
-                feature.properties.adresse +
-                (feature.properties.quartier
-                  ? " - " + feature.properties.quartier
-                  : "")
+          showSelection() {
+            this.layer.eachLayer(l => {
+              if (l.feature.properties.id === this.selection.id) {
+                map.setView(l.getLatLng());
               }
-              - ${feature.properties.ville}
-              </div>
-            </div>
-            <p class="text-center mt-1 max-w-2xl text-base text-gray-500">
-              <a href="tel:${feature.properties.telephone}">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                ${feature.properties.telephone}
-              </a>
-            </p>
-          `);
+            });
+          },
+
+          click(feature, showSelection) {
+            this.selection = feature;
+
+            if (showSelection) {
+              map.setZoom(Math.max(16, map.getZoom()));
+              this.showSelection();
+            } else {
+              setTimeout(() => document.getElementById('f' + this.selection.id).scrollIntoView(), 0);
+            }
+          },
+        }));
+
+        // init Leaflet
+
+        let map = L.map('mapid').setView([-22.279575, 166.442412], 10);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png').addTo(map);
+
+        const lc = L.control
+          .locate({
+            flyTo: true,
+            icon: 'ti ti-gps',
+            iconLoading: 'ti ti-loader',
+            onLocationError: () => dispatch('locationerror')
+          })
+          .addTo(map);
+        lc.start();
+
+        function dispatch(eventType, detail) {
+          document.getElementById('mapid').dispatchEvent(new CustomEvent('map:' + eventType, { detail }));
+        }
+
+        map.on('locationfound', e => {
+          lc.stopFollowing();
+          dispatch('locationfound', { center: e.latlng });
+        });
+        map.on('locationerror', e => dispatch('locationerror'));
+
+        // appelé sur chaque feature
+        function onEachFeature(feature, layer) {
+          // lors d'un click, centrer la carte du partenaire
+          layer.on('click', () => dispatch('click', { feature: feature.properties }));
         }
       });
     </script>
