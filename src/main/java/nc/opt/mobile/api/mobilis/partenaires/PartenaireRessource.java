@@ -5,9 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-
 import org.geojson.Feature;
 import org.geojson.FeatureCollection;
 import org.geojson.Point;
@@ -27,11 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Interface REST des boutiques partenaires
  */
-@RestController()
+@RestController
 @RequestMapping("/api/partenaires")
 @CrossOrigin("*")
 @Validated
 public class PartenaireRessource {
+
     private final PartenaireRepository repository;
 
     public PartenaireRessource(PartenaireRepository repository) {
@@ -39,18 +37,36 @@ public class PartenaireRessource {
     }
 
     @GetMapping(produces = "application/geo+json")
-    public FeatureCollection listGeoJSON(@Valid @ParameterObject RequestParams params) {
+    public FeatureCollection listGeoJSON(@ParameterObject RequestParams params) {
         FeatureCollection collection = new FeatureCollection();
         collection.addAll(list(params).stream().map(this::map).collect(Collectors.toList()));
         return collection;
     }
 
     @GetMapping(produces = "application/json")
-    public List<Partenaire> list(@Valid @ParameterObject RequestParams params) {
-        if (params.getNearBy() != null) {
+    public List<Partenaire> list(@ParameterObject RequestParams p) {
+        if (
+            p.getNearBy() != null &&
+            (p.getNearBy().getLat() == null || p.getNearBy().getLon() == null || p.getNearBy().getDistance() == null)
+        ) {
+            throw new BadRequestException(
+                "nearBy.lon, nearBy.lat et nearBy.distance doivent être tous renseignés lors d'une recherche par proximité "
+            );
+        }
+
+        if (p.getNearBy() != null && p.getQ() == null) {
             return repository.findByPositionDistance(
-                String.format("POINT(%s %s)", params.getNearBy().getLon(), params.getNearBy().getLat()),
-                params.getNearBy().getDistance());
+                String.format("POINT(%s %s)", p.getNearBy().getLon(), p.getNearBy().getLat()),
+                p.getNearBy().getDistance()
+            );
+        } else if (p.getNearBy() != null && p.getQ() != null) {
+            return repository.findByPositionDistanceWithFullTextSearch(
+                String.format("POINT(%s %s)", p.getNearBy().getLon(), p.getNearBy().getLat()),
+                p.getNearBy().getDistance(),
+                p.getQ() + "*"
+            );
+        } else if (p.getQ() != null) {
+            return repository.findWithFullTextSearch(p.getQ() + "*");
         } else {
             return repository.findAll();
         }
@@ -65,11 +81,14 @@ public class PartenaireRessource {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
+        ex
+            .getBindingResult()
+            .getAllErrors()
+            .forEach(error -> {
+                String fieldName = ((FieldError) error).getField();
+                String errorMessage = error.getDefaultMessage();
+                errors.put(fieldName, errorMessage);
+            });
         return errors;
     }
 

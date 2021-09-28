@@ -38,7 +38,66 @@
   </head>
   <body>
     <div x-data="data" class="flex flex-shrink flex-grow h-screen w-screen">
-      <div class="z-1000 w-screen h-44 absolute md:static bottom-6 md:left flex justify-center md:flex-col md:h-screen md:w-96">
+      <div
+        class="
+          z-1000
+          w-screen
+          h-44
+          absolute
+          md:static
+          bottom-6
+          md:left
+          flex
+          justify-center
+          md:justify-start md:flex-col md:h-screen md:w-96 md:bg-gray-50
+        "
+      >
+        <div class="rounded-xl m-4 p-3 shadow bg-white md:static fixed top-0">
+          <form x-ref="form" @submit.prevent role="search" novalidate="" class="flex flex-shrink flex-grow m-0">
+            <label for="search-input" id="search-label"
+              ><svg width="20" height="20" viewBox="0 0 20 20">
+                <path
+                  d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
+                  stroke="currentColor"
+                  fill="none"
+                  fill-rule="evenodd"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </label>
+            <input
+              id="search-input"
+              @input.debounce="search($event.target.value)"
+              class="flex-1 outline-none px-2"
+              aria-autocomplete="list"
+              aria-labelledby="search-label"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              placeholder="Recherche"
+              maxlength="64"
+              type="search"
+              enterkeyhint="go"
+              autofocus
+              value=""
+            />
+            <button @click="$refs.form.reset(); search('')">
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <path
+                  d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"
+                  stroke="currentColor"
+                  fill="none"
+                  fill-rule="evenodd"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+          </form>
+        </div>
+
         <div
           x-show="features.length"
           class="w-full space-x-4 md:space-y-4 md:pr-4 md:pb-4 carousel carousel-center md:carousel-vertical md:bg-gray-50 md:rounded-xl"
@@ -91,7 +150,7 @@
 
       <div
         id="mapid"
-        @map:locationfound.debounce="load"
+        @map:locationfound.debounce="loadByPosition"
         @map:click="click($event.detail.feature)"
         class="flex-auto w-screen h-screen md:w-auto md:h-auto"
       ></div>
@@ -117,12 +176,23 @@
           features: [],
           layer: null,
           selection: null,
-
+          center: null, // dernière position
+          q: '', // dernière recherche
           scrollLeft: 0,
 
-          load(e) {
-            const center = e ? e.detail.center : map.getCenter();
-            fetch(`/api/partenaires?nearBy.lat=${center.lat}&nearBy.lon=${center.lng}&nearBy.distance=700000`)
+          search(q) {
+            this.q = q;
+            this.load();
+          },
+
+          loadByPosition(e) {
+            this.center = e ? e.detail.center : map.getCenter();
+            this.load();
+          },
+
+          load() {
+            const qText = this.q ? '&q=' + this.q : '';
+            fetch(`/api/partenaires?nearBy.lat=${this.center.lat}&nearBy.lon=${this.center.lng}&nearBy.distance=700000${qText}`)
               .then(r => r.json())
               .then(data => {
                 if (this.layer) {

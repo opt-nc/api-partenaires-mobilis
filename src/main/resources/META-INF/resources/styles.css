@@ -1,6 +1,6 @@
-.header a:not([href|="#"])::after {
-  content: " ";
-  background-image: url("images/href.svg");
+.header a:not([href|='#'])::after {
+  content: ' ';
+  background-image: url('images/href.svg');
   width: 1em;
   height: 1em;
   display: inline-block;
@@ -12,8 +12,19 @@
   z-index: 1000; /* To be above the map */
 }
 
+/* zoom & position gps : déplacement en bas à droite de l'écran */
+.leaflet-control-container {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+  top: 58%;
+  right: 4rem;
+}
 .leaflet-control-locate {
   font-size: 1.7em;
+}
+.leaflet-control-attribution {
+  display: none;
 }
 
 .facebook {
@@ -93,4 +104,11 @@
 
 .selected {
   filter: grayscale();
+}
+
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  display: none;
 }
