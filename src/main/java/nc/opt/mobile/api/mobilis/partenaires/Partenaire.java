@@ -31,6 +31,8 @@ public class Partenaire {
     private String adresse;
     private String quartier;
     private String ville;
+    private String codePostal;
+    private String codeInsee;
 
     @Convert(converter = PointConverter.class)
     @Column(columnDefinition = "GEOMETRY", nullable = false)
@@ -106,6 +108,22 @@ public class Partenaire {
 
     public void setVille(String ville) {
         this.ville = ville;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getCodeInsee() {
+        return codeInsee;
+    }
+
+    public void setCodeInsee(String codeInsee) {
+        this.codeInsee = codeInsee;
     }
 
     public Point getPosition() {

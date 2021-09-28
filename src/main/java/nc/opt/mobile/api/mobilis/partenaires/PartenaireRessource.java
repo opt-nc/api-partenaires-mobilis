@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import org.geojson.Feature;
 import org.geojson.FeatureCollection;
 import org.geojson.Point;
@@ -103,6 +104,8 @@ public class PartenaireRessource {
         feature.setProperty("adresse", partenaire.getAdresse());
         feature.setProperty("quartier", partenaire.getQuartier());
         feature.setProperty("ville", partenaire.getVille());
+        feature.setProperty("code_postal", partenaire.getCodePostal());
+        feature.setProperty("code_insee", partenaire.getCodeInsee());
         feature.setProperty("telephone", partenaire.getTelephone());
 
         if (partenaire.getUrlGmaps() != null) {

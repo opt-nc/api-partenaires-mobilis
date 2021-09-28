@@ -139,7 +139,7 @@
                     <i class="ti ti-road-sign" aria-hidden="true"></i>
                   </a>
                 </template>
-                <div x-text="feature.adresse + (feature.quartier ? ' - '  + feature.quartier : '') + ' - ' + feature.ville"></div>
+                <div x-text="feature.adresse + (feature.quartier ? ' - '  + feature.quartier : '') + ' - ' + feature.code_postal + ' ' + feature.ville"></div>
               </div>
               <p class="text-center mt-1 max-w-2xl text-base text-gray-500">
                 <a :href="'tel:' + feature.telephone" @click.stop title="Appeler">
