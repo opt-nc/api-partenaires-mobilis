@@ -17,7 +17,7 @@ jobs:
         cache: 'maven'
 
     - name: Build with Maven
-      run: mvn -B deploy
+      run: mvn -B test
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
