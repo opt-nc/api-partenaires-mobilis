@@ -58,12 +58,12 @@ jobs:
       - name: Prepare tags
         id : image_tags
         run: |
-           if [[ $GITHUB_REF == refs/tags/* ]]; then
-            TAGS="latest,stable,${GITHUB_REF#refs/tags/}"
+           VERSION=$(git describe --tags --exact-match 2>/dev/null)
+           if [[ $VERSION ]]; then
+            echo ::set-output name=tags::="latest,stable,$VERSION"
            else
-            TAGS="latest"
+            echo ::set-output name=tags::"latest"
            fi
-           echo ::set-output name=tags::${TAGS}
 
-      - name: Publish on Docker Hub with jib
+      - name: Publish on Docker Hub with
         run: mvn -B -Djib.to.auth.username=${{secrets.OPT_DOCKERHUB_LOGIN}} -Djib.to.auth.password=${{secrets.OPT_DOCKERHUB_PASSWORD}} -Djib.to.tags=${{steps.image_tags.outputs.tags}} compile jib:build
