@@ -10,9 +10,9 @@
 POC d'intégration d'un service REST SpringBoot sous forme d'image Docker.
 Ce service met à disposition la liste des boutiques de prestataires Mobilis.
 
-Version desktop                  |  Version mobile
-:-------------------------------:|:--------------------------------:
-![](docs/screenshot-desktop.png) | ![](docs/screenshot-mobile.png)
+Version desktop                            |  Version mobile
+:-----------------------------------------:|:-----------------------------------------:
+![screenshot](docs/screenshot-desktop.png) | ![screenshot](docs/screenshot-mobile.png)
 
 # 🕹️Jouer avec l'API tout de suite !
 
