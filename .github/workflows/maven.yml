@@ -55,7 +55,7 @@ jobs:
         run: |
            VERSION=$(git describe --tags --exact-match 2>/dev/null || true)
            if [[ $VERSION ]]; then
-            echo ::set-output name=tags::"latest,stable,$VERSION"
+            echo ::set-output name=tags::"latest,stable,${VERSION##v}"
            else
             echo ::set-output name=tags::"latest"
            fi
