@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.1.4...v1.1.5) (2021-09-29)
+
+
+### Bug Fixes
+
+* **README.md:** screenshot dekstop & Mobile ([7ab6d21](https://github.com/opt-nc/api-partenaires-mobilis/commit/7ab6d216c84e2c5f95c90d7aed7922f51d7c0165)), closes [#24](https://github.com/opt-nc/api-partenaires-mobilis/issues/24)
+
 ## [1.1.4](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.1.3...v1.1.4) (2021-09-29)
 
 
