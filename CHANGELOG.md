@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.1.0...v1.1.1) (2021-09-29)
+
+
+### Bug Fixes
+
+* **deps:** Upgrade java 17 ([2bd1a65](https://github.com/opt-nc/api-partenaires-mobilis/commit/2bd1a653bacfc7c11003b4afc7c1178aaea3d7da)), closes [#47](https://github.com/opt-nc/api-partenaires-mobilis/issues/47)
+
 # [1.1.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.0.0...v1.1.0) (2021-09-29)
 
 
