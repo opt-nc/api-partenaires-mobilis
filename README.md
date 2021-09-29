@@ -10,6 +10,10 @@
 POC d'intégration d'un service REST SpringBoot sous forme d'image Docker.
 Ce service met à disposition la liste des boutiques de prestataires Mobilis.
 
+Version desktop                  |  Version mobile
+:-------------------------------:|:--------------------------------:
+![](docs/screenshot-desktop.png) | ![](docs/screenshot-mobile.png)
+
 # 🕹️Jouer avec l'API tout de suite !
 
 Un cours dédié a été créé sur KataCoda : https://www.katacoda.com/opt-labs/courses/partenaires-mobilis
