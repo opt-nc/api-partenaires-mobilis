@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.1.1...v1.1.2) (2021-09-29)
+
+
+### Bug Fixes
+
+* **docker:** les tags de conventional-commits non utilisés ([c8a78af](https://github.com/opt-nc/api-partenaires-mobilis/commit/c8a78af7832de410f2088f5359ff175cfd418a8d)), closes [#44](https://github.com/opt-nc/api-partenaires-mobilis/issues/44)
+
 ## [1.1.1](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.1.0...v1.1.1) (2021-09-29)
 
 
