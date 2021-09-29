@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.1.3...v1.1.4) (2021-09-29)
+
+
+### Bug Fixes
+
+* **README.md:** Code postal & Insee ([20180f8](https://github.com/opt-nc/api-partenaires-mobilis/commit/20180f80ab586e0160d9501a8057af33137eef80))
+
 ## [1.1.3](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.1.2...v1.1.3) (2021-09-29)
 
 
