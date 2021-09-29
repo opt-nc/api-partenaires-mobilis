@@ -1,11 +1,12 @@
 package nc.opt.mobile.api.mobilis.partenaires;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.geojson.Feature;
 import org.geojson.FeatureCollection;
 import org.geojson.Point;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/partenaires")
 @CrossOrigin("*")
 @Validated
+@Tag(name = "partenaires", description = "Boutiques partenaires Mobilis")
 public class PartenaireRessource {
 
     private final PartenaireRepository repository;
@@ -38,6 +40,12 @@ public class PartenaireRessource {
     }
 
     @GetMapping(produces = "application/geo+json")
+    @Operation(
+        summary = "Retourne les partenaires par position géographique et/ou par recherche textuelle",
+        description = "Ce service permet de récupérer les partenaires en Json ou en GeoJson pour faciliter l'intégration dans des outils de cartographie.\n" +
+        " - L'interrogation par position se fait en fournissant un point GPS (coordonnées WSG 84) et une distance en mètres pour définir un rayon max des boutiques partenaires qui seront retournées. À noter que tous les champs `nearBy.*` doivent être renseignés pour ce type de recherche.\n" +
+        " - L'interrogation par recherche textuelle multi-critères peut être combinée à la recherche par position et se fait via le paramètre `q`."
+    )
     public FeatureCollection listGeoJSON(@ParameterObject RequestParams params) {
         FeatureCollection collection = new FeatureCollection();
         collection.addAll(list(params).stream().map(this::map).collect(Collectors.toList()));
@@ -45,6 +53,12 @@ public class PartenaireRessource {
     }
 
     @GetMapping(produces = "application/json")
+    @Operation(
+        summary = "Retourne les partenaires par position géographique et/ou par recherche textuelle",
+        description = "Ce service permet de récupérer les partenaires en Json ou en GeoJson pour faciliter l'intégration dans des outils de cartographie.\n" +
+        " - L'interrogation par position se fait en fournissant un point GPS (coordonnées WSG 84) et une distance en mètres pour définir un rayon max des boutiques partenaires qui seront retournées. À noter que tous les champs `nearBy.*` doivent être renseignés pour ce type de recherche.\n" +
+        " - L'interrogation par recherche textuelle multi-critères peut être combinée à la recherche par position et se fait via le paramètre `q`."
+    )
     public List<Partenaire> list(@ParameterObject RequestParams p) {
         if (
             p.getNearBy() != null &&
@@ -73,6 +87,10 @@ public class PartenaireRessource {
         }
     }
 
+    @Operation(
+        summary = "Retourne un partenaire en fonction de son ID",
+        description = "Ce service permet de récupérer les partenaires en Json"
+    )
     @GetMapping(path = "{id}", produces = "application/json")
     public Partenaire get(@PathVariable Long id) {
         return repository.findById(id).orElse(null);
