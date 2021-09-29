@@ -39,6 +39,8 @@ curl http://localhost:8080/api/partenaires
       "type": "Feature",
       "properties": {
         "ville": "Bourail",
+        "codePostal": "98870",
+        "codeInsee": "98803",
         "quartier": null,
         "adresse": "5 A rue Simone Dremon - Village",
         "telephone": "44 33 55",
