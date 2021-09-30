@@ -19,6 +19,8 @@ Version desktop                            |  Version mobile
 ## 🎥 Démos video
 
 - [Téléphone](https://youtu.be/hGFMjtgEcxc)
+- [Ordinateur](https://youtu.be/e7SbTiNPfWc)
+- Tablette : à venir
 
 # 🕹️Jouer avec l'API tout de suite !
 
