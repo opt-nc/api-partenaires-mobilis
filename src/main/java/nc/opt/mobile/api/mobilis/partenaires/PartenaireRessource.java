@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import org.geojson.Feature;
 import org.geojson.FeatureCollection;
 import org.geojson.Point;
@@ -42,22 +41,26 @@ public class PartenaireRessource {
     @GetMapping(produces = "application/geo+json")
     @Operation(
         summary = "Retourne les partenaires par position géographique et/ou par recherche textuelle",
-        description = "Ce service permet de récupérer les partenaires en Json ou en GeoJson pour faciliter l'intégration dans des outils de cartographie.\n" +
-        " - L'interrogation par position se fait en fournissant un point GPS (coordonnées WSG 84) et une distance en mètres pour définir un rayon max des boutiques partenaires qui seront retournées. À noter que tous les champs `nearBy.*` doivent être renseignés pour ce type de recherche.\n" +
-        " - L'interrogation par recherche textuelle multi-critères peut être combinée à la recherche par position et se fait via le paramètre `q`."
+        description = """
+        Ce service permet de récupérer les partenaires en Json ou en GeoJson pour faciliter l'intégration dans des outils de cartographie.
+         - L'interrogation par position se fait en fournissant un point GPS (coordonnées WSG 84) et une distance en mètres pour définir un rayon max des boutiques partenaires qui seront retournées. À noter que tous les champs `nearBy.*` doivent être renseignés pour ce type de recherche.
+         - L'interrogation par recherche textuelle multi-critères peut être combinée à la recherche par position et se fait via le paramètre `q`.
+         """
     )
     public FeatureCollection listGeoJSON(@ParameterObject RequestParams params) {
         FeatureCollection collection = new FeatureCollection();
-        collection.addAll(list(params).stream().map(this::map).collect(Collectors.toList()));
+        collection.addAll(list(params).stream().map(this::map).toList());
         return collection;
     }
 
     @GetMapping(produces = "application/json")
     @Operation(
         summary = "Retourne les partenaires par position géographique et/ou par recherche textuelle",
-        description = "Ce service permet de récupérer les partenaires en Json ou en GeoJson pour faciliter l'intégration dans des outils de cartographie.\n" +
-        " - L'interrogation par position se fait en fournissant un point GPS (coordonnées WSG 84) et une distance en mètres pour définir un rayon max des boutiques partenaires qui seront retournées. À noter que tous les champs `nearBy.*` doivent être renseignés pour ce type de recherche.\n" +
-        " - L'interrogation par recherche textuelle multi-critères peut être combinée à la recherche par position et se fait via le paramètre `q`."
+        description = """
+        Ce service permet de récupérer les partenaires en Json ou en GeoJson pour faciliter l'intégration dans des outils de cartographie.
+         - L'interrogation par position se fait en fournissant un point GPS (coordonnées WSG 84) et une distance en mètres pour définir un rayon max des boutiques partenaires qui seront retournées. À noter que tous les champs `nearBy.*` doivent être renseignés pour ce type de recherche.
+         - L'interrogation par recherche textuelle multi-critères peut être combinée à la recherche par position et se fait via le paramètre `q`.
+         """
     )
     public List<Partenaire> list(@ParameterObject RequestParams p) {
         if (
@@ -69,22 +72,14 @@ public class PartenaireRessource {
             );
         }
 
-        if (p.getNearBy() != null && p.getQ() == null) {
-            return repository.findByPositionDistance(
-                String.format("POINT(%s %s)", p.getNearBy().getLon(), p.getNearBy().getLat()),
-                p.getNearBy().getDistance()
-            );
-        } else if (p.getNearBy() != null && p.getQ() != null) {
-            return repository.findByPositionDistanceWithFullTextSearch(
-                String.format("POINT(%s %s)", p.getNearBy().getLon(), p.getNearBy().getLat()),
-                p.getNearBy().getDistance(),
-                p.getQ() + "*"
-            );
-        } else if (p.getQ() != null) {
-            return repository.findWithFullTextSearch(p.getQ() + "*");
-        } else {
-            return repository.findAll();
-        }
+        return repository.find(
+            p.getNearBy() != null ? String.format("POINT(%s %s)", p.getNearBy().getLon(), p.getNearBy().getLat()) : null,
+            p.getNearBy() != null ? p.getNearBy().getDistance() : null,
+            p.getQ(),
+            p.getVille(),
+            p.getCodePostal(),
+            p.getCodeInsee()
+        );
     }
 
     @Operation(

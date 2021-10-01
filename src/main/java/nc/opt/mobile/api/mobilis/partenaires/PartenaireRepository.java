@@ -12,29 +12,30 @@ public interface PartenaireRepository extends JpaRepository<Partenaire, Long> {
      * GPS (longitude/latitude - SRID 4326) pour vérifier l'intersection avec les positions des boutiques partenaires
      */
     @Query(
-        "FROM Partenaire" +
-        " WHERE ST_INTERSECTS(position, ST_TRANSFORM(ST_SetSRID(ST_BUFFER(ST_TRANSFORM(ST_SetSRID(ST_GeomFromText(:point), 4326), 3857), :distance), 3857), 4326)) = true" +
-        " ORDER BY ST_MaxDistance(position, ST_SetSRID(ST_GeomFromText(:point), 4326)) ASC"
-    ) // du plus proche au plus éloigné du point de recherche
-    List<Partenaire> findByPositionDistance(@Param("point") String point, @Param("distance") long distance);
-
-    @Query(
         nativeQuery = true,
-        value = "SELECT p.* FROM Partenaire as p, FTL_SEARCH_DATA(:q, 0, 0) FT " +
-        " WHERE FT.TABLE='PARTENAIRE' AND p.ID=FT.KEYS[0] AND ST_INTERSECTS(position, ST_TRANSFORM(ST_SetSRID(ST_BUFFER(ST_TRANSFORM(ST_SetSRID(ST_GeomFromText(:point), 4326), 3857), :distance), 3857), 4326)) = true" +
-        " ORDER BY FT.SCORE, ST_MaxDistance(position, ST_SetSRID(ST_GeomFromText(:point), 4326)) ASC"
+        value = """
+        SELECT p.*
+            FROM Partenaire as p
+            WHERE
+                (:q IS NULL OR p.id IN (SELECT ft.KEYS[0] FROM FTL_SEARCH_DATA(:q, 0, 0) ft WHERE ft.table = 'PARTENAIRE'))
+                AND (:point IS NULL OR (ST_INTERSECTS(position, ST_TRANSFORM(ST_SetSRID(ST_BUFFER(ST_TRANSFORM(ST_SetSRID(ST_GeomFromText(:point), 4326), 3857), :distance), 3857), 4326)) = true))
+                AND (:ville IS NULL OR LOWER(p.ville) = LOWER(:ville))
+                AND (:codePostal IS NULL OR p.code_postal = :codePostal)
+                AND (:codeInsee IS NULL OR p.code_insee = :codeInsee)
+                AND (:q IS NULL OR :q IS NOT NULL)
+                AND (:point IS NULL OR :point IS NOT NULL)
+                AND (:distance IS NULL OR :distance IS NOT NULL)
+            ORDER BY
+                (SELECT ft.score FROM FTL_SEARCH_DATA(:q, 0, 0) ft WHERE ft.table = 'PARTENAIRE' and ft.keys[0] = p.id),
+                ST_MaxDistance(position, ST_SetSRID(ST_GeomFromText(:point), 4326)) ASC
+        """
     )
-    List<Partenaire> findByPositionDistanceWithFullTextSearch(
+    List<Partenaire> find(
         @Param("point") String point,
         @Param("distance") long distance,
-        @Param("q") String q
+        @Param("q") String q,
+        @Param("ville") String ville,
+        @Param("codePostal") String codePostal,
+        @Param("codeInsee") String codeInsee
     );
-
-    @Query(
-        nativeQuery = true,
-        value = "SELECT p.* FROM Partenaire as p, FTL_SEARCH_DATA(:q, 0, 0) FT " +
-        " WHERE FT.TABLE='PARTENAIRE' AND p.ID=FT.KEYS[0]" +
-        " ORDER BY FT.SCORE ASC"
-    )
-    List<Partenaire> findWithFullTextSearch(@Param("q") String q);
 }

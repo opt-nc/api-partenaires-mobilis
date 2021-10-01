@@ -4,10 +4,19 @@ import io.swagger.v3.oas.annotations.Parameter;
 
 public class RequestParams {
 
-    @Parameter(description = "recherche textuelle multi-critères", example = "noumea")
+    @Parameter(description = "recherche textuelle multi-critères", example = "djilo")
     private String q;
 
     private NearBy nearBy;
+
+    @Parameter(description = "recherche par ville", example = "noumea")
+    private String ville;
+
+    @Parameter(description = "recherche par code postal", example = "98800")
+    private String codePostal;
+
+    @Parameter(description = "recherche par code Insee", example = "98818")
+    private String codeInsee;
 
     public NearBy getNearBy() {
         return nearBy;
@@ -23,6 +32,30 @@ public class RequestParams {
 
     public String getQ() {
         return q;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getCodeInsee() {
+        return codeInsee;
+    }
+
+    public void setCodeInsee(String codeInsee) {
+        this.codeInsee = codeInsee;
     }
 
     public static class NearBy {
