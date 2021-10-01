@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.1.5...v1.2.0) (2021-10-01)
+
+
+### Features
+
+* **rest:** :sparkles: critères de filtre supplémentaires ([11d7176](https://github.com/opt-nc/api-partenaires-mobilis/commit/11d7176c7ee74858c19bae5b84eb4c85614f5fd0))
+
 ## [1.1.5](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.1.4...v1.1.5) (2021-09-29)
 
 
