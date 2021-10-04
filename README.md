@@ -20,7 +20,7 @@ Version desktop                            |  Version mobile
 
 - [Téléphone](https://youtu.be/hGFMjtgEcxc)
 - [Ordinateur](https://youtu.be/e7SbTiNPfWc)
-- Tablette : à venir
+- [Tablette](https://youtu.be/eW1LltvOPC8)
 
 # 🕹️Jouer avec l'API tout de suite !
 
