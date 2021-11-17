@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.2.0...v1.2.1) (2021-11-17)
+
+
+### Bug Fixes
+
+* **api:** :ambulance: Correction du GET /partenaires ([7f6bb80](https://github.com/opt-nc/api-partenaires-mobilis/commit/7f6bb80fc34235acec6c996916a71cc72426827b)), closes [#64](https://github.com/opt-nc/api-partenaires-mobilis/issues/64)
+
 # [1.2.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.1.5...v1.2.0) (2021-10-01)
 
 
