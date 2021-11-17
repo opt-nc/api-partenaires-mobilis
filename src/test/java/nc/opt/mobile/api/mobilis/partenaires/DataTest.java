@@ -1,4 +1,4 @@
-package nc.opt.mobile;
+package nc.opt.mobile.api.mobilis.partenaires;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

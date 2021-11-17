@@ -32,7 +32,7 @@ public interface PartenaireRepository extends JpaRepository<Partenaire, Long> {
     )
     List<Partenaire> find(
         @Param("point") String point,
-        @Param("distance") long distance,
+        @Param("distance") Integer distance,
         @Param("q") String q,
         @Param("ville") String ville,
         @Param("codePostal") String codePostal,
