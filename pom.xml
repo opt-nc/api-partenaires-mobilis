@@ -21,7 +21,7 @@
         <!-- Note : toutes les versions ci-dessous sont bloquées en attente car h2gis à un bug sur java 11+ : https://github.com/orbisgis/h2gis/issues/986 -->
         <h2.version>1.4.197</h2.version>
         <h2gis.version>1.5.0</h2gis.version>
-        <lucene.version>3.6.2</lucene.version>
+        <lucene.version>8.11.0</lucene.version>
     </properties>
     <dependencies>
         <dependency>
