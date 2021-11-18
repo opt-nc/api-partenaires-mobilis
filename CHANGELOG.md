@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.2.1...v1.2.2) (2021-11-18)
+
+
+### Bug Fixes
+
+* **README.md:** :memo: Badge semantic ([562e442](https://github.com/opt-nc/api-partenaires-mobilis/commit/562e442188b384f0d103ce6fbc155256228cbeba)), closes [#66](https://github.com/opt-nc/api-partenaires-mobilis/issues/66) [#65](https://github.com/opt-nc/api-partenaires-mobilis/issues/65)
+
 ## [1.2.1](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.2.0...v1.2.1) (2021-11-17)
 
 
