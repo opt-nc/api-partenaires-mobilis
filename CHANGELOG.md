@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.2.2...v1.2.3) (2021-11-18)
+
+
+### Bug Fixes
+
+* **front:** :bug: Premier click sur partenaire ne fontionnait pas toujours ([328e21e](https://github.com/opt-nc/api-partenaires-mobilis/commit/328e21ed219f23bdc87a1ea6fcd76018de13a1d6)), closes [#62](https://github.com/opt-nc/api-partenaires-mobilis/issues/62)
+
 ## [1.2.2](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.2.1...v1.2.2) (2021-11-18)
 
 
