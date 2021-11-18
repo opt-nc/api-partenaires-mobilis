@@ -15,7 +15,7 @@
     <description>POC d&apos;intégration d&apos;un service REST dans Docker puis dans Kubernetes</description>
     <properties>
         <java.version>17</java.version>
-        <springdoc-openapi-ui.version>1.5.10</springdoc-openapi-ui.version>
+        <springdoc-openapi-ui.version>1.5.12</springdoc-openapi-ui.version>
         <geojson-jackson.version>1.14</geojson-jackson.version>
 
         <!-- Note : toutes les versions ci-dessous sont bloquées en attente car h2gis à un bug sur java 11+ : https://github.com/orbisgis/h2gis/issues/986 -->
