@@ -217,10 +217,10 @@
             this.scrollLeft = $event.target.scrollLeft;
           },
 
-          showSelection() {
+          showSelection(zoom) {
             this.layer.eachLayer(l => {
               if (l.feature.properties.id === this.selection.id) {
-                map.setView(l.getLatLng());
+                map.setView(l.getLatLng(), zoom && Math.max(16, map.getZoom()) || undefined);
               }
             });
           },
@@ -229,8 +229,8 @@
             this.selection = feature;
 
             if (showSelection) {
-              map.setZoom(Math.max(16, map.getZoom()));
-              this.showSelection();
+              //map.setZoom(Math.max(16, map.getZoom()));
+              this.showSelection(true);
             } else {
               setTimeout(() => document.getElementById('f' + this.selection.id).scrollIntoView(), 0);
             }
