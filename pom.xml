@@ -12,7 +12,7 @@
     <artifactId>api-partenaires-mobilis</artifactId>
     <version>1.2.3</version>
     <name>api-partenaires-mobilis</name>
-    <description>POC d&apos;intégration d&apos;un service REST dans Docker puis dans Kubernetes</description>
+    <packaging>jar</packaging>
     <properties>
         <java.version>17</java.version>
         <springdoc-openapi-ui.version>1.5.12</springdoc-openapi-ui.version>
@@ -50,6 +50,12 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
