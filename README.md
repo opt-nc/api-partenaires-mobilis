@@ -9,7 +9,8 @@
 # 👉API des partenaires Mobilis de l'OPT-NC
 
 POC d'intégration d'un service REST SpringBoot sous forme d'image Docker.
-Ce service met à disposition la liste des boutiques de prestataires Mobilis.
+Ce service met à disposition la liste des boutiques de prestataires Mobilis, 
+via notre [Marketplace d'API publiques](https://rapidapi.com/opt-nc-opt-nc-default/api/partenaires-mobilis/details).
 
 ## 📷 Screenshots
 
