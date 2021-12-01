@@ -1,16 +1,16 @@
 package nc.opt.mobile.api.mobilis.partenaires;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.geojson.Feature;
 import org.geojson.FeatureCollection;
 import org.geojson.Point;
 import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 /**
  * Interface REST des boutiques partenaires
@@ -87,8 +90,8 @@ public class PartenaireRessource {
         description = "Ce service permet de récupérer les partenaires en Json"
     )
     @GetMapping(path = "{id}", produces = "application/json")
-    public Partenaire get(@PathVariable Long id) {
-        return repository.findById(id).orElse(null);
+    public ResponseEntity<Partenaire> get(@PathVariable Long id) {
+        return repository.findById(id).map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
