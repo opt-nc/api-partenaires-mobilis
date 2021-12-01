@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.2.4...v1.2.5) (2021-12-01)
+
+
+### Bug Fixes
+
+* **api:** :bug: HTTP 404 si partenaire non trouvé par son id ([8de5b6b](https://github.com/opt-nc/api-partenaires-mobilis/commit/8de5b6b481201082a0da169c3d0ac0134dfb2add))
+
 ## [1.2.4](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.2.3...v1.2.4) (2021-12-01)
 
 
