@@ -14,7 +14,7 @@
     <packaging>jar</packaging>
     <properties>
         <java.version>17</java.version>
-        <springdoc-openapi-ui.version>1.5.13</springdoc-openapi-ui.version>
+        <springdoc-openapi-ui.version>1.6.0</springdoc-openapi-ui.version>
         <geojson-jackson.version>1.14</geojson-jackson.version>
 
         <!-- Note : toutes les versions ci-dessous sont bloquées en attente car h2gis à un bug sur java 11+ : https://github.com/orbisgis/h2gis/issues/986 -->
