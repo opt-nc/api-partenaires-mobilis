@@ -16,7 +16,7 @@ via notre [Marketplace d'API publiques](https://rapidapi.com/opt-nc-opt-nc-defau
 
 Version desktop                            |  Version mobile
 :-----------------------------------------:|:-----------------------------------------:
-![screenshot](docs/screenshot-desktop.png) | ![screenshot](docs/screenshot-mobile.png)
+![screenshot](doc/screenshot-desktop.png) | ![screenshot](doc/screenshot-mobile.png)
 
 ## 🎥 Démos video
 
@@ -89,6 +89,13 @@ Une image docker est générée via le plugin JIB pour maven (qui permet notamme
 - `docker run --rm -p 8080:8080 optnc/api-partenaires-mobilis:stable` pour la denière release
 
 Pour tester : http://localhost:8080 depuis votre navigateur
+
+### Images signés
+
+L'image est signé avec l'outil [cosign](https://docs.sigstore.dev/cosign/installation), vous pouvez donc vérifier que l'image est correcte grâce à la [clé publique](./doc/cosign.pub) :
+```bash
+cosign -d verify --key cosign.pub  optnc/api-partenaires-mobilis:latest
+```
 
 ## Doc de l'API REST
 
