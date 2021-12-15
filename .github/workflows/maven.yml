@@ -63,7 +63,7 @@ jobs:
       # Login against a Docker registry except on PR
       - name: Log into registry docker hub
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@main
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.OPT_DOCKERHUB_LOGIN }}
           password: ${{ secrets.OPT_DOCKERHUB_PASSWORD }}
@@ -71,16 +71,11 @@ jobs:
       - name: Publish on Docker Hub with
         run: mvn -B -Djib.to.tags=${{steps.image_tags.outputs.tags}} compile jib:build
 
-      # Install the cosign tool except on PR
-      # https://github.com/sigstore/cosign-installer
-      - name: Install cosign
-        if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@main
-
       # This will only write to the public Rekor transparency log when the Docker
       # repository is public to avoid leaking data.  If you would like to publish
       # transparency data even for private images, pass --force to cosign below.
-      # https://github.com/sigstore/cosign
+      - name: Install cosign
+        uses: sigstore/cosign-installer@main
       - name: Sign the published Docker image
         env:
           COSIGN_EXPERIMENTAL: "true"
