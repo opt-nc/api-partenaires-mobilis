@@ -75,7 +75,7 @@ jobs:
       # repository is public to avoid leaking data.  If you would like to publish
       # transparency data even for private images, pass --force to cosign below.
       - name: Write signing key to disk (only needed for `cosign sign --key`)
-        run: echo "${{ secrets.DOCKER-SIGNING_SECRET }}" > cosign.key
+        run: echo "${{ secrets.DOCKER_SIGNING_SECRET }}" > cosign.key
       - name: Install cosign
         uses: sigstore/cosign-installer@main
       - name: Sign the published Docker image
