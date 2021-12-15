@@ -60,8 +60,16 @@ jobs:
             echo ::set-output name=tags::"latest"
            fi
 
+      # Login against a Docker registry except on PR
+      - name: Log into registry docker hub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@main
+        with:
+          username: ${{ secrets.OPT_DOCKERHUB_LOGIN }}
+          password: ${{ secrets.OPT_DOCKERHUB_PASSWORD }}
+
       - name: Publish on Docker Hub with
-        run: mvn -B -Djib.to.auth.username=${{secrets.OPT_DOCKERHUB_LOGIN}} -Djib.to.auth.password=${{secrets.OPT_DOCKERHUB_PASSWORD}} -Djib.to.tags=${{steps.image_tags.outputs.tags}} compile jib:build
+        run: mvn -B -Djib.to.tags=${{steps.image_tags.outputs.tags}} compile jib:build
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
