@@ -4,10 +4,10 @@
     <title>Partenaires Mobilis de l'OPT-NC</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
 
     <!-- Open Graph tags preview sur les réseaux sociaux -->
-    <meta name="og:image" content="/images/preview-open-graph.gif"/>
+    <meta name="og:image" content="/images/preview-open-graph.gif" />
 
     <!-- CSS-->
     <!-- Leaflet pour le plan avec extension de localisation -->
@@ -43,18 +43,7 @@
   <body>
     <div x-data="data" class="flex flex-shrink flex-grow h-screen w-screen">
       <div
-        class="
-          z-1000
-          w-screen
-          h-max-1/4
-          fixed
-          md:static
-          bottom-5
-          md:left
-          flex
-          justify-center
-          md:justify-start md:flex-col md:h-screen md:w-96 md:bg-gray-50
-        "
+        class="z-1000 w-screen h-max-1/4 fixed md:static bottom-5 md:left flex justify-center md:justify-start md:flex-col md:h-screen md:w-96 md:bg-gray-50"
       >
         <div class="rounded-xl m-4 p-3 shadow bg-white md:static fixed top-0">
           <form x-ref="form" @submit.prevent role="search" novalidate="" class="flex flex-shrink flex-grow m-0">
@@ -110,20 +99,7 @@
           <template x-for="feature in features" :key="feature.id">
             <div
               :id="'f' + feature.id"
-              class="
-                carousel-item
-                shadow
-                rounded-xl
-                bg-white
-                p-3
-                w-4/5
-                md:w-auto
-                cursor-pointer
-                transition
-                delay-50
-                duration-300
-                ease-in-out
-              "
+              class="carousel-item shadow rounded-xl bg-white p-3 w-4/5 md:w-auto cursor-pointer transition delay-50 duration-300 ease-in-out"
               :class="feature == selection ? 'shadow-lg border-2 border-blue-300' : ''"
               @click="click(feature, true)"
             >
@@ -139,7 +115,9 @@
                     <i class="ti ti-road-sign" aria-hidden="true"></i>
                   </a>
                 </template>
-                <div x-text="feature.adresse + (feature.quartier ? ' - '  + feature.quartier : '') + ' - ' + feature.code_postal + ' ' + feature.ville"></div>
+                <div
+                  x-text="feature.adresse + (feature.quartier ? ' - '  + feature.quartier : '') + ' - ' + feature.code_postal + ' ' + feature.ville"
+                ></div>
               </div>
               <p class="text-center mt-1 max-w-2xl text-base text-gray-500">
                 <a :href="'tel:' + feature.telephone" @click.stop title="Appeler">
@@ -164,7 +142,7 @@
     <div
       class="z-1000 w-full text-xs text-gray-500 text-center fixed bottom-1"
       x-data="{buildInfo: {}}"
-      x-init="buildInfo = await (await fetch('/info')).json()"
+      x-init="buildInfo = await (await fetch('/actuator/info')).json()"
     >
       <template x-if="buildInfo.build">
         <div>
@@ -220,7 +198,7 @@
           showSelection(zoom) {
             this.layer.eachLayer(l => {
               if (l.feature.properties.id === this.selection.id) {
-                map.setView(l.getLatLng(), zoom && Math.max(16, map.getZoom()) || undefined);
+                map.setView(l.getLatLng(), (zoom && Math.max(16, map.getZoom())) || undefined);
               }
             });
           },
@@ -248,7 +226,7 @@
             flyTo: true,
             icon: 'ti ti-gps',
             iconLoading: 'ti ti-loader',
-            onLocationError: () => dispatch('locationerror')
+            onLocationError: () => dispatch('locationerror'),
           })
           .addTo(map);
         lc.start();

@@ -9,7 +9,7 @@ public class RequestParams {
 
     private NearBy nearBy;
 
-    @Parameter(description = "recherche par ville", example = "noumea")
+    @Parameter(description = "recherche par ville", example = "nouméa")
     private String ville;
 
     @Parameter(description = "recherche par code postal", example = "98800")

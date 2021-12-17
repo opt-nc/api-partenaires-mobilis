@@ -15,19 +15,20 @@ public interface PartenaireRepository extends JpaRepository<Partenaire, Long> {
         nativeQuery = true,
         value = """
         SELECT p.*
-            FROM Partenaire as p
+            FROM Partenaire as p INNER JOIN Commune as c ON c.code_insee = p.code_insee
             WHERE
-                (:q IS NULL OR p.id IN (SELECT ft.KEYS[0] FROM FTL_SEARCH_DATA(:q, 0, 0) ft WHERE ft.table = 'PARTENAIRE'))
-                AND (:point IS NULL OR (ST_INTERSECTS(position, ST_TRANSFORM(ST_SetSRID(ST_BUFFER(ST_TRANSFORM(ST_SetSRID(ST_GeomFromText(:point), 4326), 3857), :distance), 3857), 4326)) = true))
-                AND (:ville IS NULL OR LOWER(p.ville) = LOWER(:ville))
-                AND (:codePostal IS NULL OR p.code_postal = :codePostal)
+                (
+                    (:q IS NULL OR p.id IN (SELECT ft.KEYS[0] FROM FTL_SEARCH_DATA(:q, 0, 0) ft WHERE ft.table = 'PARTENAIRE'))
+                    OR (:q IS NULL OR p.id IN (SELECT ft.KEYS[0] FROM FTL_SEARCH_DATA(:q, 0, 0) ft WHERE ft.table = 'COMMUNE'))
+                )
+                AND (:point IS NULL OR (ST_INTERSECTS(p.position, ST_TRANSFORM(ST_SetSRID(ST_BUFFER(ST_TRANSFORM(ST_SetSRID(ST_GeomFromText(:point), 4326), 3857), :distance), 3857), 4326)) = true))
+                AND (:ville IS NULL OR LOWER(c.nom) = LOWER(:ville))
+                AND (:codePostal IS NULL OR c.code_postal = :codePostal)
                 AND (:codeInsee IS NULL OR p.code_insee = :codeInsee)
-                AND (:q IS NULL OR :q IS NOT NULL)
-                AND (:point IS NULL OR :point IS NOT NULL)
-                AND (:distance IS NULL OR :distance IS NOT NULL)
             ORDER BY
                 (SELECT ft.score FROM FTL_SEARCH_DATA(:q, 0, 0) ft WHERE ft.table = 'PARTENAIRE' and ft.keys[0] = p.id),
-                ST_MaxDistance(position, ST_SetSRID(ST_GeomFromText(:point), 4326)) ASC
+                ST_MaxDistance(p.position, ST_SetSRID(ST_GeomFromText(:point), 4326)) ASC
+
         """
     )
     List<Partenaire> find(
