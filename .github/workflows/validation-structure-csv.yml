@@ -40,5 +40,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: init schema
         run: psql -a -f .github/workflows/schema.sql
-      - name: load csv with COPY
+      - name: test partenaires csv with COPY
         run: cat src/main/resources/partenaires.csv | psql -c "COPY partenaire from STDIN WITH (FORMAT csv, HEADER true)"
+      - name: test communes csv with COPY
+        run: cat src/main/resources/communes.csv | psql -c "COPY commune from STDIN WITH (FORMAT csv, HEADER true)"

@@ -1,4 +1,4 @@
-package nc.opt.mobile.api.mobilis.partenaires;
+package nc.opt.mobile.api.mobilis.partenaires.util;
 
 import io.swagger.v3.oas.annotations.Parameter;
 
@@ -9,7 +9,7 @@ public class RequestParams {
 
     private NearBy nearBy;
 
-    @Parameter(description = "recherche par ville", example = "noumea")
+    @Parameter(description = "recherche par ville", example = "nouméa")
     private String ville;
 
     @Parameter(description = "recherche par code postal", example = "98800")

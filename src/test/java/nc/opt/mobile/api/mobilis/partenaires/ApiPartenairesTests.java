@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureJsonTesters
-class ApiPartenairesApplicationTests {
+class ApiPartenairesTests {
 
     @Autowired
     private MockMvc rest;
@@ -109,10 +109,7 @@ class ApiPartenairesApplicationTests {
     @Test
     void testByCriteria() throws Exception {
         rest
-            .perform(
-                get("/api/partenaires?q=djilo&ville=nouméa&codePostal=98800&codeInsee=98818")
-                    .accept(MediaType.APPLICATION_JSON_VALUE)
-            )
+            .perform(get("/api/partenaires?q=djilo&ville=nouméa&codePostal=98800&codeInsee=98818").accept(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$", hasSize(2)))

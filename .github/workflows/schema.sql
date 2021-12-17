@@ -8,9 +8,15 @@ create table partenaire (
   url_gmaps varchar(255) check(url_gmaps is null or url_gmaps like 'https://%'),
   url_fb varchar(255) check(url_fb is null or url_fb like 'https://%'),
   quartier varchar(255),
-  ville varchar(255) not null,
-  code_postal varchar(5) not null,
   code_insee varchar(5) not null,
   position varchar(255) not null,
   primary key (id)
+);
+
+create table commune (
+  nom varchar(255) not null,
+  code_postal varchar(5) not null,
+  code_insee varchar(5) not null,
+  position varchar(255) not null,
+  primary key (code_insee)
 );

@@ -1,10 +1,13 @@
-package nc.opt.mobile.api.mobilis.partenaires;
+package nc.opt.mobile.api.mobilis.partenaires.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.springframework.data.geo.Point;
@@ -19,20 +22,28 @@ public class Partenaire {
 
     @Id
     private Long id;
+
     @Column(nullable = false)
     private String nom;
+
     private String ridet;
     private String telephone;
+
     @JsonProperty("url_gmaps")
     private String urlGmaps;
+
     @JsonProperty("url_fb")
     private String urlFb;
+
     @Column(nullable = false)
     private String adresse;
+
     private String quartier;
-    private String ville;
-    private String codePostal;
-    private String codeInsee;
+
+    @ManyToOne
+    @JoinColumn(name = "code_insee")
+    @JsonIgnore
+    private Commune commune;
 
     @Convert(converter = PointConverter.class)
     @Column(columnDefinition = "GEOMETRY", nullable = false)
@@ -102,28 +113,27 @@ public class Partenaire {
         this.quartier = quartier;
     }
 
+    /** rétrocompatibilité */
     public String getVille() {
-        return ville;
+        return commune.getNom();
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
-
-    public String getCodePostal() {
-        return codePostal;
-    }
-
-    public void setCodePostal(String codePostal) {
-        this.codePostal = codePostal;
-    }
-
+    /** rétrocompatibilité */
     public String getCodeInsee() {
-        return codeInsee;
+        return commune.getCodeInsee();
     }
 
-    public void setCodeInsee(String codeInsee) {
-        this.codeInsee = codeInsee;
+    /** rétrocompatibilité */
+    public String getCodePostal() {
+        return commune.getCodePostal();
+    }
+
+    public Commune getCommune() {
+        return commune;
+    }
+
+    public void setCommune(Commune commune) {
+        this.commune = commune;
     }
 
     public Point getPosition() {
