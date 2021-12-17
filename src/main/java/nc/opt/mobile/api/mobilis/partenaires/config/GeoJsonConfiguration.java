@@ -7,8 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
-import nc.opt.mobile.api.mobilis.partenaires.entity.Commune;
-import nc.opt.mobile.api.mobilis.partenaires.entity.Partenaire;
+
 import org.geojson.Feature;
 import org.geojson.FeatureCollection;
 import org.geojson.Point;
@@ -19,6 +18,9 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import nc.opt.mobile.api.mobilis.partenaires.entity.Commune;
+import nc.opt.mobile.api.mobilis.partenaires.entity.Partenaire;
 
 @Configuration
 public class GeoJsonConfiguration implements WebMvcConfigurer {
@@ -43,7 +45,7 @@ public class GeoJsonConfiguration implements WebMvcConfigurer {
 
         @Override
         public boolean canWrite(Class<?> clazz, MediaType mediaType) {
-            return mediaType.equals(GEOJSON);
+            return GEOJSON.equals(mediaType);
         }
 
         @Override
