@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.2.5...v1.3.0) (2021-12-17)
+
+
+### Bug Fixes
+
+* **swagger:** :alien: Le swagger ne permettait plus de choisir entre le GeoJSON et le JSON ([24c78f7](https://github.com/opt-nc/api-partenaires-mobilis/commit/24c78f7cda75e85615eb6908a6c8026733ea8dab))
+
+
+### Features
+
+* **api:** :sparkles: Nouvelle API GET /communes ([a87abf3](https://github.com/opt-nc/api-partenaires-mobilis/commit/a87abf3920490631567c721740a9053356a2110e)), closes [#61](https://github.com/opt-nc/api-partenaires-mobilis/issues/61)
+
 ## [1.2.5](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.2.4...v1.2.5) (2021-12-01)
 
 
