@@ -1,4 +1,4 @@
-package nc.opt.mobile.api.mobilis.partenaires;
+package nc.opt.mobile.api.mobilis.partenaires.util;
 
 import io.swagger.v3.oas.annotations.Parameter;
 
