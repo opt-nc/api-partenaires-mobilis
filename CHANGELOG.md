@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.3.0...v1.3.1) (2021-12-17)
+
+
+### Bug Fixes
+
+* **swagger:** Le swagger ne s'affichait plus ([4171654](https://github.com/opt-nc/api-partenaires-mobilis/commit/4171654a4c7c2a7578039de04e26b35f03dbec86))
+
 # [1.3.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.2.5...v1.3.0) (2021-12-17)
 
 
