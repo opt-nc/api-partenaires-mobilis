@@ -1,11 +1,13 @@
-package nc.opt.mobile.api.mobilis.partenaires;
+package nc.opt.mobile.api.mobilis.partenaires.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import nc.opt.mobile.api.mobilis.partenaires.util.PointConverter;
+
 import org.springframework.data.geo.Point;
+
+import nc.opt.mobile.api.mobilis.partenaires.util.PointConverter;
 
 /**
  * Représente une boutique partenaire Mobilis

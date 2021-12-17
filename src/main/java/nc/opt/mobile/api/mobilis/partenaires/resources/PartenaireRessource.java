@@ -1,9 +1,8 @@
-package nc.opt.mobile.api.mobilis.partenaires;
+package nc.opt.mobile.api.mobilis.partenaires.resources;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.LinkedHashMap;
 import java.util.List;
+
 import org.geojson.Feature;
 import org.geojson.FeatureCollection;
 import org.geojson.Point;
@@ -16,6 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import nc.opt.mobile.api.mobilis.partenaires.BadRequestException;
+import nc.opt.mobile.api.mobilis.partenaires.RequestParams;
+import nc.opt.mobile.api.mobilis.partenaires.entity.Partenaire;
+import nc.opt.mobile.api.mobilis.partenaires.repository.PartenaireRepository;
 
 /**
  * Interface REST des boutiques partenaires

@@ -1,4 +1,4 @@
-package nc.opt.mobile.api.mobilis.partenaires;
+package nc.opt.mobile.api.mobilis.partenaires.resources;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import nc.opt.mobile.api.mobilis.partenaires.entity.Commune;
+import nc.opt.mobile.api.mobilis.partenaires.repository.CommuneRepository;
 
 /**
  * Interface REST des communes se où se trouvent des boutiques partenaires

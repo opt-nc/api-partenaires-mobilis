@@ -1,15 +1,18 @@
-package nc.opt.mobile.api.mobilis.partenaires;
+package nc.opt.mobile.api.mobilis.partenaires.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import nc.opt.mobile.api.mobilis.partenaires.util.PointConverter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.springframework.data.geo.Point;
+
+import nc.opt.mobile.api.mobilis.partenaires.util.PointConverter;
 
 /**
  * Représente une boutique partenaire Mobilis

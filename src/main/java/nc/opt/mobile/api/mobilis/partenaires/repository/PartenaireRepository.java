@@ -1,9 +1,12 @@
-package nc.opt.mobile.api.mobilis.partenaires;
+package nc.opt.mobile.api.mobilis.partenaires.repository;
 
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import nc.opt.mobile.api.mobilis.partenaires.entity.Partenaire;
 
 public interface PartenaireRepository extends JpaRepository<Partenaire, Long> {
     /**
