@@ -1,3 +1,14 @@
+## [1.3.3](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.3.2...v1.3.3) (2022-01-28)
+
+
+### Bug Fixes
+
+* bump h2 from 1.4.197 to 2.1.210 ([7f53814](https://github.com/opt-nc/api-partenaires-mobilis/commit/7f538145759b3e68a022025cdc7f6837c6ddf8a7))
+* bump h2gis from 1.5.0 to 2.0.0 ([200d94f](https://github.com/opt-nc/api-partenaires-mobilis/commit/200d94f2c92a23ed94f493da96c7e1410b528090))
+* bump jib-maven-plugin from 3.1.4 to 3.2.0 ([e7cb2b4](https://github.com/opt-nc/api-partenaires-mobilis/commit/e7cb2b4262494380b7d5ad2e297184f659376cfd))
+* bump spring-boot-starter-parent from 2.6.2 to 2.6.3 ([98f1f2d](https://github.com/opt-nc/api-partenaires-mobilis/commit/98f1f2d67a94886a4bf21e3aece328dd778c8356))
+* bump springdoc-openapi-ui from 1.6.2 to 1.6.5 ([b2a642e](https://github.com/opt-nc/api-partenaires-mobilis/commit/b2a642e06a2a8d17e94339a468950d2117e219e3))
+
 ## [1.3.2](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.3.1...v1.3.2) (2021-12-22)
 
 
