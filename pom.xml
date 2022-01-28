@@ -20,7 +20,7 @@
         <!-- Note : toutes les versions ci-dessous sont bloquées en attente car h2gis à un bug sur java 11+ : https://github.com/orbisgis/h2gis/issues/986 -->
         <h2.version>2.1.210</h2.version>
         <h2gis.version>2.0.0</h2gis.version>
-        <lucene.version>3.6.2</lucene.version>
+        <lucene.version>9.0.0</lucene.version>
     </properties>
     <dependencies>
         <dependency>
@@ -71,6 +71,11 @@
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
             <version>${lucene.version}</version>
         </dependency>
 
