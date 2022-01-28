@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.2</version>
+        <version>2.6.3</version>
     </parent>
     <groupId>nc.opt.mobile</groupId>
     <artifactId>api-partenaires-mobilis</artifactId>
@@ -14,13 +14,13 @@
     <packaging>jar</packaging>
     <properties>
         <java.version>17</java.version>
-        <springdoc-openapi-ui.version>1.6.2</springdoc-openapi-ui.version>
+        <springdoc-openapi-ui.version>1.6.5</springdoc-openapi-ui.version>
         <geojson-jackson.version>1.14</geojson-jackson.version>
 
         <!-- Note : toutes les versions ci-dessous sont bloquées en attente car h2gis à un bug sur java 11+ : https://github.com/orbisgis/h2gis/issues/986 -->
-        <h2.version>1.4.197</h2.version>
-        <h2gis.version>1.5.0</h2gis.version>
-        <lucene.version>3.6.2</lucene.version>
+        <h2.version>2.1.210</h2.version>
+        <h2gis.version>2.0.0</h2gis.version>
+        <lucene.version>9.0.0</lucene.version>
     </properties>
     <dependencies>
         <dependency>
@@ -71,6 +71,11 @@
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
             <version>${lucene.version}</version>
         </dependency>
 
@@ -144,7 +149,7 @@
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>3.1.4</version>
+                <version>3.2.0</version>
                 <configuration>
                     <from>
                         <image>eclipse-temurin:17-alpine</image>
