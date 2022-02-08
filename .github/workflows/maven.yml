@@ -30,7 +30,7 @@ jobs:
     - name: Get Maven Metadata
       id: project
       run: |
-        run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+        echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
 
     - name: Build with Maven
       run: mvn -B spring-boot:build-image -Dspring-boot.build-image.imageName=optnc/api-partenaires-mobilis
