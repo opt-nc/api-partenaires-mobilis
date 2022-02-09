@@ -1,0 +1,32 @@
+{
+  "rules": [
+    { "excludeClasses": "org.apache.maven.surefire.**" },
+    { "excludeClasses": "net.bytebuddy.**" },
+    { "excludeClasses": "org.apiguardian.**" },
+    { "excludeClasses": "org.junit.**" },
+    { "excludeClasses": "org.mockito.**" },
+    { "excludeClasses": "org.springframework.**" },
+    { "excludeClasses": "org.springdoc.**" },
+    { "excludeClasses": "com.fasterxml.**" },
+    { "excludeClasses": "java.**" },
+    { "excludeClasses": "javax.**" },
+    { "excludeClasses": "org.hibernate.**" },
+    { "excludeClasses": "ch.qos.logback.**" },
+    { "excludeClasses": "com.sun.**" },
+    { "excludeClasses": "sun.**" },
+    { "excludeClasses": "jdk.**" },
+    { "excludeClasses": "com.zaxxer.hikari.**" },
+    { "excludeClasses": "io.micrometer.**" },
+    { "excludeClasses": "io.swagger.**" },
+    { "excludeClasses": "nonapi.**" },
+    { "excludeClasses": "org.webjars.**" },
+    { "excludeClasses": "org.yaml.**" },
+    { "excludeClasses": "org.assertj.**" },
+    { "excludeClasses": "org.apache.logging.log4j.**" },
+    { "excludeClasses": "org.apache.catalina.**" },
+    { "excludeClasses": "org.aopalliance.**" },
+    { "excludeClasses": "org.h2.**" },
+    { "excludeClasses": "org.slf4j.**" },
+    { "excludeClasses": "nc.opt.**" }
+  ]
+}
