@@ -64,8 +64,8 @@ jobs:
       - name: Build Docker Spring Native Image
         run: |
             mvn -B spring-boot:build-image \
-              -Dspring-boot.build-image.imageName=optnc/api-partenaires-mobilis:${{ steps.image_tags.version }} \
-              -Dspring-boot.build-image.tags=${{ steps.image_tags.tags }}
+              -Dspring-boot.build-image.imageName=optnc/api-partenaires-mobilis:${{ steps.image_tags.outputs.version }} \
+              -Dspring-boot.build-image.tags=${{ steps.image_tags.outputs.tags }}
 
       # Login against a Docker registry except on PR
       - name: Log into registry docker hub
