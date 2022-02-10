@@ -8,7 +8,7 @@
 
 # 👉API des partenaires Mobilis de l'OPT-NC
 
-POC d'intégration d'un service REST SpringBoot sous forme d'image Docker.
+POC d'intégration d'un service REST SpringBoot Native sous forme d'image Docker.
 Ce service met à disposition la liste des boutiques de prestataires Mobilis, 
 via notre [Marketplace d'API publiques](https://rapidapi.com/opt-nc-opt-nc-default/api/partenaires-mobilis/details).
 
@@ -32,6 +32,10 @@ Tout y est abordé, les feedbacks sont bienvenus, par des issues idéalement.
 ## Lancement en DEV
 
 `./mvnw spring-boot:run`
+
+## Spring Native
+
+[voir la doc dédiée](BUILD.md)
 
 ## Description technique
 

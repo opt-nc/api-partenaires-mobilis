@@ -1,0 +1,9 @@
+{
+  "resources": {
+    "includes": [
+      { "pattern": ".*/.*\\.sql" },
+      { "pattern": "\\Qcommunes.csv\\E" },
+      { "pattern": "\\Qpartenaires.csv\\E" }
+    ]
+  }
+}
