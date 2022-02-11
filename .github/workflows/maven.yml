@@ -54,6 +54,7 @@ jobs:
         id : image_tags
         run: |
            VERSION=$(git describe --tags --exact-match 2>/dev/null || true)
+           echo ::set-output name=version::"${VERSION##v}"
            if [[ $VERSION ]]; then
             echo ::set-output name=version::"${VERSION##v}"
             echo ::set-output name=tags::"latest,stable"
