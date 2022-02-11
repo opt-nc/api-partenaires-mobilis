@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.3.3...v1.4.0) (2022-02-10)
+
+
+### Features
+
+* **ci:** Release ([143fc28](https://github.com/opt-nc/api-partenaires-mobilis/commit/143fc2803f4ede4fa9aef8cc42864cefd93b1962))
+
 ## [1.3.3](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.3.2...v1.3.3) (2022-01-28)
 
 

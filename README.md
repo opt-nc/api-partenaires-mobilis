@@ -104,3 +104,4 @@ cosign -d verify --key cosign.pub  optnc/api-partenaires-mobilis:latest
 ## Doc de l'API REST
 
 SwaggerUI accessible directement à la raçine du service http://localhost:8080/api depuis un navigateur
+
