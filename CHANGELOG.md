@@ -1,3 +1,11 @@
+## [1.4.1](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.4.0...v1.4.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* bump springdoc-openapi-ui from 1.6.5 to 1.6.6 ([29187b7](https://github.com/opt-nc/api-partenaires-mobilis/commit/29187b7b8de56c131beea61881bd67cbe49847b1))
+* bump springdoc-openapi-ui from 1.6.5 to 1.6.6 ([224a553](https://github.com/opt-nc/api-partenaires-mobilis/commit/224a553e88888511b5993f7e139505c04f0df1f6))
+
 # [1.4.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.3.3...v1.4.0) (2022-02-10)
 
 
