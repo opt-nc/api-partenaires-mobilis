@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.2</version>
+        <version>2.6.3</version>
     </parent>
     <groupId>nc.opt.mobile</groupId>
     <artifactId>api-partenaires-mobilis</artifactId>
@@ -67,7 +67,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <!-- Avec la 1.4.200 ça passe pas l'init de h2gis -->
             <version>${h2.version}</version>
         </dependency>
         <!-- extension H2 pour faire du spactial -->
