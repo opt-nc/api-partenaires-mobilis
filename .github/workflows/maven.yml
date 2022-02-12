@@ -68,6 +68,8 @@ jobs:
             mvn -B spring-boot:build-image -DskipTests \
               -Dspring-boot.build-image.imageName=optnc/api-partenaires-mobilis:${{ steps.image_tags.outputs.version }} \
               -Dspring-boot.build-image.tags=${{ steps.image_tags.outputs.tags }}
+        env:
+          MAVEN_OPTS: "-Xmx128m"
 
       # Login against a Docker registry except on PR
       - name: Log into registry docker hub
