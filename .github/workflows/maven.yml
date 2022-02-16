@@ -54,19 +54,16 @@ jobs:
         id : image_tags
         run: |
            VERSION=$(git describe --tags --exact-match 2>/dev/null || true)
-           echo ::set-output name=version::"${VERSION##v}"
            if [[ $VERSION ]]; then
-            echo ::set-output name=version::"${VERSION##v}"
-            echo ::set-output name=tags::"latest,stable"
+            echo ::set-output name=tags::"optnc/api-partenaires-mobilis:${VERSION##v},optnc/api-partenaires-mobilis:latest,optnc/api-partenaires-mobilis:stable"
            else
-            echo ::set-output name=version::"latest"
-            echo ::set-output name=tags::"latest"
+            echo ::set-output name=tags::"optnc/api-partenaires-mobilis:latest"
            fi
 
       - name: Build Docker Spring Native Image
         run: |
-            mvn -B spring-boot:build-image -DskipTests \
-              -Dspring-boot.build-image.imageName=optnc/api-partenaires-mobilis:${{ steps.image_tags.outputs.version }} \
+            mvn -B spring-boot:build-image -Pspring-native -Pbuild-docker-image  -DskipTests \
+              -Dspring-boot.build-image.imageName=optnc/api-partenaires-mobilis \
               -Dspring-boot.build-image.tags=${{ steps.image_tags.outputs.tags }}
         env:
           MAVEN_OPTS: "-Xmx128m"
@@ -80,7 +77,7 @@ jobs:
           password: ${{ secrets.OPT_DOCKERHUB_PASSWORD }}
 
       - name: Push docker image to Docker Hub
-        run: docker push optnc/api-partenaires-mobilis:${{ steps.image_tags.outputs.version }}
+        run: docker push --all-tags optnc/api-partenaires-mobilis
 
       # This will only write to the public Rekor transparency log when the Docker
       # repository is public to avoid leaking data.  If you would like to publish
@@ -92,4 +89,4 @@ jobs:
       - name: Sign the published Docker image
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
-        run: cosign sign --key cosign.key optnc/api-partenaires-mobilis:${{ steps.image_tags.outputs.version }}
+        run: cosign sign --key cosign.key optnc/api-partenaires-mobilis:latest
