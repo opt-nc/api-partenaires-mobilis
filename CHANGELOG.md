@@ -1,3 +1,11 @@
+## [1.4.2](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.4.1...v1.4.2) (2022-02-17)
+
+
+### Bug Fixes
+
+* **docker:** tags manquants ([697e943](https://github.com/opt-nc/api-partenaires-mobilis/commit/697e943a57e4871df3c0dcdfab72327ece95b2bd))
+* **docker:** tags manquants ([dd9cb95](https://github.com/opt-nc/api-partenaires-mobilis/commit/dd9cb9595ec29f4e15e31a45e91c44604b27862e))
+
 ## [1.4.1](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.4.0...v1.4.1) (2022-02-17)
 
 
