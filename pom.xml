@@ -40,7 +40,7 @@
         <!-- Docs API REST -->
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi</artifactId>
+            <artifactId>springdoc-openapi-ui</artifactId>
             <version>${springdoc-openapi.version}</version>
         </dependency>
 
