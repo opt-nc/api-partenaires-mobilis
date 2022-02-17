@@ -8,7 +8,7 @@
     </parent>
     <groupId>nc.opt.mobile</groupId>
     <artifactId>api-partenaires-mobilis</artifactId>
-    <version>1.4.2</version>
+    <version>1.4.3</version>
     <name>api-partenaires-mobilis</name>
     <packaging>jar</packaging>
     <properties>
