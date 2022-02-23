@@ -67,17 +67,6 @@ jobs:
         env:
           MAVEN_OPTS: "-Xmx128m"
 
-      # Login against a Docker registry except on PR
-      - name: Log into registry docker hub
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.OPT_DOCKERHUB_LOGIN }}
-          password: ${{ secrets.OPT_DOCKERHUB_PASSWORD }}
-
-      - name: Push docker image to Docker Hub
-        run: docker push --all-tags optnc/api-partenaires-mobilis
-
       - name: Build Docker Spring Native Image
         run: |
             mvn -B spring-boot:build-image -Pspring-native -Pbuild-docker-image  -DskipTests \
@@ -85,6 +74,14 @@ jobs:
               -Dspring-boot.build-image.tags=${{ steps.image_tags.outputs.tags }}
         env:
           MAVEN_OPTS: "-Xmx128m"
+
+      # Login against a Docker registry except on PR
+      - name: Log into registry docker hub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.OPT_DOCKERHUB_LOGIN }}
+          password: ${{ secrets.OPT_DOCKERHUB_PASSWORD }}
 
       - name: Push docker image to Docker Hub
         run: docker push --all-tags optnc/api-partenaires-mobilis
@@ -99,4 +96,6 @@ jobs:
       - name: Sign the published Docker image
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
-        run: cosign sign --key cosign.key optnc/api-partenaires-mobilis:latest
+        run: |
+          cosign sign --key cosign.key optnc/api-partenaires-mobilis:latest
+          cosign sign --key cosign.key optnc/api-partenaires-mobilis:latest-jvm
