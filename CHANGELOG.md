@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.4.3...v1.5.0) (2022-02-23)
+
+
+### Features
+
+* **docker:** :rocket: Version non-native en plus de la version native ([f43a682](https://github.com/opt-nc/api-partenaires-mobilis/commit/f43a6828299cb6af7dc3cac3681d74424161fda0)), closes [#114](https://github.com/opt-nc/api-partenaires-mobilis/issues/114)
+
 ## [1.4.3](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.4.2...v1.4.3) (2022-02-17)
 
 
