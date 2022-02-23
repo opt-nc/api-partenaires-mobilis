@@ -67,6 +67,9 @@ jobs:
         env:
           MAVEN_OPTS: "-Xmx128m"
 
+      - name: Push docker image to Docker Hub
+        run: docker push --all-tags optnc/api-partenaires-mobilis
+
       - name: Build Docker Spring Native Image
         run: |
             mvn -B spring-boot:build-image -Pspring-native -Pbuild-docker-image  -DskipTests \
