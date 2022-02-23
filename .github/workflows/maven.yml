@@ -55,15 +55,22 @@ jobs:
         run: |
            VERSION=$(git describe --tags --exact-match 2>/dev/null || true)
            if [[ $VERSION ]]; then
-            echo ::set-output name=tags::"optnc/api-partenaires-mobilis:${VERSION##v},optnc/api-partenaires-mobilis:latest,optnc/api-partenaires-mobilis:stable"
-           else
-            echo ::set-output name=tags::"optnc/api-partenaires-mobilis:latest"
+            echo ::set-output name=tags::"optnc/api-partenaires-mobilis:${VERSION##v},optnc/api-partenaires-mobilis:stable"
+            echo ::set-output name=tags_jvm::"optnc/api-partenaires-mobilis:${VERSION##v}-jvm,optnc/api-partenaires-mobilis:stable-jvm"
            fi
+
+      - name: Build regular Docker Image (with JVM, non-native)
+        run: |
+            mvn -B spring-boot:build-image -DskipTests \
+              -Dspring-boot.build-image.imageName=optnc/api-partenaires-mobilis:latest-jvm \
+              -Dspring-boot.build-image.tags=${{ steps.image_tags.outputs.tags_jvm }}
+        env:
+          MAVEN_OPTS: "-Xmx128m"
 
       - name: Build Docker Spring Native Image
         run: |
             mvn -B spring-boot:build-image -Pspring-native -Pbuild-docker-image  -DskipTests \
-              -Dspring-boot.build-image.imageName=optnc/api-partenaires-mobilis \
+              -Dspring-boot.build-image.imageName=optnc/api-partenaires-mobilis:latest \
               -Dspring-boot.build-image.tags=${{ steps.image_tags.outputs.tags }}
         env:
           MAVEN_OPTS: "-Xmx128m"
