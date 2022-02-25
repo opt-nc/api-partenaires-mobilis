@@ -1,3 +1,18 @@
+# [1.5.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.4.3...v1.5.0) (2022-02-25)
+
+
+### Bug Fixes
+
+* bump spring-boot-starter-parent from 2.6.3 to 2.6.4 ([7969a29](https://github.com/opt-nc/api-partenaires-mobilis/commit/7969a292d841cbaf53af7ef2e55d7749d6813f14))
+
+
+### Features
+
+* **docker:** :rocket: Version non-native en plus de la version native ([11e1938](https://github.com/opt-nc/api-partenaires-mobilis/commit/11e19383909547218600b0b2dc763bbf7902fedd)), closes [#114](https://github.com/opt-nc/api-partenaires-mobilis/issues/114)
+* **docker:** :rocket: Version non-native en plus de la version native ([8a7d19c](https://github.com/opt-nc/api-partenaires-mobilis/commit/8a7d19c9ca0e152fe24d3045fccc4d96529aaccc)), closes [#114](https://github.com/opt-nc/api-partenaires-mobilis/issues/114)
+* **docker:** :rocket: Version non-native en plus de la version native ([de53965](https://github.com/opt-nc/api-partenaires-mobilis/commit/de5396501013a9825e84e7373961060833490a3f)), closes [#114](https://github.com/opt-nc/api-partenaires-mobilis/issues/114)
+* **docker:** :rocket: Version non-native en plus de la version native ([f43a682](https://github.com/opt-nc/api-partenaires-mobilis/commit/f43a6828299cb6af7dc3cac3681d74424161fda0)), closes [#114](https://github.com/opt-nc/api-partenaires-mobilis/issues/114)
+
 # [1.5.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.4.3...v1.5.0) (2022-02-23)
 
 
