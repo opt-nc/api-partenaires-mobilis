@@ -37,7 +37,7 @@ jobs:
       PGUSER: postgres
       PGPASSWORD: postgres
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: init schema
         run: psql -a -f .github/workflows/schema.sql
       - name: test partenaires csv with COPY
