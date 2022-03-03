@@ -6,10 +6,10 @@ La doc est [ici](https://docs.spring.io/spring-native/docs/0.11.2/reference/html
 
 ### Lancement de la génération native en local (pour le débogage)
 
-Des prérequis sont nécessaires, tout est décrit [ici]https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools()
+Des prérequis sont nécessaires, tout est décrit [ici](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools)
 
 ```bash
-mvn clean -Pnative package
+mvn package -Pspring-native -Pbuild-native-image
 ```
 
 ### Configuration
@@ -37,7 +37,6 @@ Pour affiner l'analyse en excluant ce qui est déjà géré par Spring Boot, il 
     { "excludeClasses": "org.junit.**" },
     { "excludeClasses": "org.mockito.**" },
     { "excludeClasses": "org.springframework.**" },
-    { "excludeClasses": "org.springdoc.**" },
     { "excludeClasses": "com.fasterxml.**" },
     { "excludeClasses": "java.**" },
     { "excludeClasses": "javax.**" },
