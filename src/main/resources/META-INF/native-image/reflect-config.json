@@ -1037,5 +1037,9 @@
     "allPublicConstructors": true,
     "allDeclaredMethods": true,
     "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.core.MethodParameter",
+    "allDeclaredFields":true
   }
 ]
