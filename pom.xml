@@ -222,7 +222,7 @@
                                 <tags>${spring-boot.build-image.tags}</tags>
                                 <env>
                                     <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                                    <BP_NATIVE_IMAGE_BUILD_ARGUMENTS>-J-Xmx6G -H:+ReportExceptionStackTraces -H:-CheckToolchain</BP_NATIVE_IMAGE_BUILD_ARGUMENTS>
+                                    <BP_NATIVE_IMAGE_BUILD_ARGUMENTS>-J-Xmx8G -H:+ReportExceptionStackTraces -H:-CheckToolchain</BP_NATIVE_IMAGE_BUILD_ARGUMENTS>
                                 </env>
                             </image>
                         </configuration>
