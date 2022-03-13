@@ -4,7 +4,6 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/optnc/api-partenaires-mobilis)
 ![Docker Image Size (stable)](https://img.shields.io/docker/image-size/optnc/api-partenaires-mobilis/stable)
 ![Docker Stars](https://img.shields.io/docker/stars/optnc/api-partenaires-mobilis)
-![Docker Image Version (latest by date)](https://img.shields.io/docker/v/optnc/api-partenaires-mobilis?arch=amd64&sort=date)
 
 # 👉API des partenaires Mobilis de l'OPT-NC
 
