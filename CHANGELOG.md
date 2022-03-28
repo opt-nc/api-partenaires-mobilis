@@ -1,3 +1,11 @@
+## [1.5.1](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.0...v1.5.1) (2022-03-28)
+
+
+### Bug Fixes
+
+* bump lucene.version from 9.0.0 to 9.1.0 ([c3795bc](https://github.com/opt-nc/api-partenaires-mobilis/commit/c3795bc329430249f068301f35cdb5a44b085920))
+* bump spring-boot-starter-parent from 2.6.4 to 2.6.5 ([900f36f](https://github.com/opt-nc/api-partenaires-mobilis/commit/900f36f8154962f0f3e98c7f8bc6cfea0a86c542))
+
 # [1.5.0](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.4.3...v1.5.0) (2022-03-03)
 
 
