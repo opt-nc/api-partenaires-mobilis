@@ -4,6 +4,10 @@
 
 La doc est [ici](https://docs.spring.io/spring-native/docs/0.11.2/reference/htmlsingle/)
 
+_Cas de l'architecture Apple M1: la version de GraalVM est actuellement en cours de développement, par conséquent :_
+- _soit il est soit possible d'utiliser la version `x86` qui sera émulée automatiquement mais avec des temps de build (x 3) plus long_
+- _soit installer la version GraalVM sur [SdkMan!](https://sdkman.io) en cours de dev en utilisant [cette procédure](https://spring.io/blog/2022/03/23/building-native-images-with-graalvm-and-spring-native-on-apple-s-m1-architecture)._
+
 ### Lancement de la génération native en local (pour le débogage)
 
 Des prérequis sont nécessaires, tout est décrit [ici](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools)
@@ -57,4 +61,4 @@ Pour affiner l'analyse en excluant ce qui est déjà géré par Spring Boot, il 
   ]
 }
 ```
-Il faut ensuite lancer les tests et retravailler les fichiers généreux qui sont assez verbeux
+Il faut ensuite lancer les tests et retravailler les fichiers générés qui sont assez verbeux
