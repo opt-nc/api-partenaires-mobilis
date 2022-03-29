@@ -15,8 +15,17 @@
     "methods": [{ "name": "<init>", "parameterTypes": [] }]
   },
   {
+    "name": "org.apache.lucene.index.ConcurrentMergeScheduler"
+  },
+  {
     "name": "org.apache.lucene.index.DocsWithFieldSet",
     "allDeclaredFields": true
+  },
+  {
+    "name": "org.apache.lucene.index.IndexWriter"
+  },
+  {
+    "name": "org.apache.lucene.index.SegmentReader"
   },
   {
     "name": "org.apache.lucene.index.Term",
@@ -255,10 +264,7 @@
     "methods": [
       {
         "name": "buffer",
-        "parameterTypes": [
-          "org.locationtech.jts.geom.Geometry",
-          "java.lang.Double"
-        ]
+        "parameterTypes": ["org.locationtech.jts.geom.Geometry", "java.lang.Double"]
       }
     ]
   },
@@ -321,9 +327,7 @@
   {
     "name": "org.h2gis.functions.spatial.convert.ST_GeomFromText",
     "queryAllPublicMethods": true,
-    "methods": [
-      { "name": "toGeometry", "parameterTypes": ["java.lang.String"] }
-    ]
+    "methods": [{ "name": "toGeometry", "parameterTypes": ["java.lang.String"] }]
   },
   {
     "name": "org.h2gis.functions.spatial.convert.ST_GeomFromWKB",
@@ -475,10 +479,7 @@
     "methods": [
       {
         "name": "setSRID",
-        "parameterTypes": [
-          "org.locationtech.jts.geom.Geometry",
-          "java.lang.Integer"
-        ]
+        "parameterTypes": ["org.locationtech.jts.geom.Geometry", "java.lang.Integer"]
       }
     ]
   },
@@ -488,11 +489,7 @@
     "methods": [
       {
         "name": "ST_Transform",
-        "parameterTypes": [
-          "java.sql.Connection",
-          "org.locationtech.jts.geom.Geometry",
-          "java.lang.Integer"
-        ]
+        "parameterTypes": ["java.sql.Connection", "org.locationtech.jts.geom.Geometry", "java.lang.Integer"]
       }
     ]
   },
@@ -526,10 +523,7 @@
     "methods": [
       {
         "name": "maxDistance",
-        "parameterTypes": [
-          "org.locationtech.jts.geom.Geometry",
-          "org.locationtech.jts.geom.Geometry"
-        ]
+        "parameterTypes": ["org.locationtech.jts.geom.Geometry", "org.locationtech.jts.geom.Geometry"]
       }
     ]
   },
@@ -711,10 +705,7 @@
     "methods": [
       {
         "name": "isIntersects",
-        "parameterTypes": [
-          "org.locationtech.jts.geom.Geometry",
-          "org.locationtech.jts.geom.Geometry"
-        ]
+        "parameterTypes": ["org.locationtech.jts.geom.Geometry", "org.locationtech.jts.geom.Geometry"]
       }
     ]
   },
@@ -1040,6 +1031,9 @@
   },
   {
     "name": "org.springframework.core.MethodParameter",
-    "allDeclaredFields":true
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllPublicMethods": true,
+    "queryAllDeclaredConstructors": true
   }
 ]
