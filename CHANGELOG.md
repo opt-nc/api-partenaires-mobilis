@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.1...v1.5.2) (2022-03-29)
+
+
+### Bug Fixes
+
+* **native:** 🚨 Régression build natif suite à l'upgrade vers Lucene 9.1.0 ([724cfe8](https://github.com/opt-nc/api-partenaires-mobilis/commit/724cfe843cbf3f2affef8a9291f9eb6a0a53befe)), closes [#136](https://github.com/opt-nc/api-partenaires-mobilis/issues/136)
+
 ## [1.5.1](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.0...v1.5.1) (2022-03-28)
 
 
