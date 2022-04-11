@@ -95,7 +95,7 @@ class ApiPartenairesTests {
     void testByGeoPosition() throws Exception {
         rest
             .perform(
-                get("/api/partenaires?nearBy.lon=166.442412&nearBy.lat=-22.279575&nearBy.distance=1000")
+                get("/api/partenaires?nearByLon=166.442412&nearByLat=-22.279575&nearByDistance=1000")
                     .accept(MediaType.APPLICATION_JSON_VALUE)
             )
             .andExpect(status().isOk())
