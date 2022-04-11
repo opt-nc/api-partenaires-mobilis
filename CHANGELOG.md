@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.3...v1.5.4) (2022-04-11)
+
+
+### Bug Fixes
+
+* bump h2 from 2.1.210 to 2.1.212 ([9a6c4fd](https://github.com/opt-nc/api-partenaires-mobilis/commit/9a6c4fd3f21b3df3406d933196d3cf105134a7b9))
+
 ## [1.5.3](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.2...v1.5.3) (2022-04-08)
 
 
