@@ -175,7 +175,7 @@
 
           load() {
             const qText = this.q ? '&q=' + this.q : '';
-            fetch(`/api/partenaires?nearBy.lat=${this.center.lat}&nearBy.lon=${this.center.lng}&nearBy.distance=700000${qText}`)
+            fetch(`/api/partenaires?nearByLat=${this.center.lat}&nearByLon=${this.center.lng}&nearByDistance=700000${qText}`)
               .then(r => r.json())
               .then(data => {
                 if (this.layer) {

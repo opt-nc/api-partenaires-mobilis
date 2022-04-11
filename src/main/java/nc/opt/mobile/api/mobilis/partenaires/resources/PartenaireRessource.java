@@ -1,12 +1,9 @@
 package nc.opt.mobile.api.mobilis.partenaires.resources;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.Arrays;
 import java.util.List;
-import nc.opt.mobile.api.mobilis.partenaires.BadRequestException;
-import nc.opt.mobile.api.mobilis.partenaires.entity.Partenaire;
-import nc.opt.mobile.api.mobilis.partenaires.repository.PartenaireRepository;
-import nc.opt.mobile.api.mobilis.partenaires.util.RequestParams;
+import java.util.Objects;
+
 import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import nc.opt.mobile.api.mobilis.partenaires.BadRequestException;
+import nc.opt.mobile.api.mobilis.partenaires.entity.Partenaire;
+import nc.opt.mobile.api.mobilis.partenaires.repository.PartenaireRepository;
+import nc.opt.mobile.api.mobilis.partenaires.util.RequestParams;
 
 /**
  * Interface REST des boutiques partenaires
@@ -38,23 +42,21 @@ public class PartenaireRessource extends AbstradctRessource {
         summary = "Retourne les partenaires par position géographique et/ou par recherche textuelle",
         description = """
         Ce service permet de récupérer les partenaires en Json ou en GeoJson pour faciliter l'intégration dans des outils de cartographie.
-         - L'interrogation par position se fait en fournissant un point GPS (coordonnées WSG 84) et une distance en mètres pour définir un rayon max des boutiques partenaires qui seront retournées. À noter que tous les champs `nearBy.*` doivent être renseignés pour ce type de recherche.
+         - L'interrogation par position se fait en fournissant un point GPS (coordonnées WSG 84) et une distance en mètres pour définir un rayon max des boutiques partenaires qui seront retournées. À noter que tous les champs `nearBy*` doivent être renseignés pour ce type de recherche.
          - L'interrogation par recherche textuelle multi-critères peut être combinée à la recherche par position et se fait via le paramètre `q`.
          """
     )
     public List<Partenaire> list(@ParameterObject RequestParams p) {
-        if (
-            p.getNearBy() != null &&
-            (p.getNearBy().getLat() == null || p.getNearBy().getLon() == null || p.getNearBy().getDistance() == null)
-        ) {
+        List<Object> nearByParams = Arrays.asList(p.getNearByLat() ,p.getNearByLon() ,p.getNearByDistance());
+        if (nearByParams.stream().anyMatch(Objects::nonNull) && !nearByParams.stream().noneMatch(Objects::isNull)) {
             throw new BadRequestException(
-                "nearBy.lon, nearBy.lat et nearBy.distance doivent être tous renseignés lors d'une recherche par proximité "
+                "nearByLon, nearByLat et nearByDistance doivent être tous renseignés lors d'une recherche par proximité "
             );
         }
 
         return repository.find(
-            p.getNearBy() != null ? String.format("POINT(%s %s)", p.getNearBy().getLon(), p.getNearBy().getLat()) : null,
-            p.getNearBy() != null ? p.getNearBy().getDistance() : null,
+            p.getNearByLat() != null && p.getNearByLon()!= null? String.format("POINT(%s %s)", p.getNearByLon(), p.getNearByLat()) : null,
+            p.getNearByDistance() ,
             p.getQ(),
             p.getVille(),
             p.getCodePostal(),
