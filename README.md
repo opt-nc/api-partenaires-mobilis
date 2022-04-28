@@ -45,8 +45,8 @@ Une base de données spactiale embarquée (http://www.h2gis.org/) permet de fair
 
 Les données sont exposées en REST Json/[GeoJSON](https://geojson.org/) pour pemettre une intégration dans un outil de visu le plus simplement possible.
 
-```bash
-curl http://localhost:8080/api/partenaires
+```shell
+http :8080/api/partenaires
 ```
 ```json
 {
@@ -81,8 +81,8 @@ curl http://localhost:8080/api/partenaires
 ## Exemple de requête de récupération par position géographique
 
 Récupère les boutiques situées dans un rayon de 2000 mètres du point indiqué :
-```bash
-curl 'http://localhost:8080/api/partenaires?nearByLon=166.448744&nearByLat=-22.302828&nearByDistance=2000' -H 'accept: application/json'
+```shell
+http :8080/api/partenaires nearByLon=166.448744 nearByLat=-22.302828 nearByDistance=2000
 ```
 
 ## Docker
