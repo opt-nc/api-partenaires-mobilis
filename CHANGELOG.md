@@ -1,3 +1,27 @@
+## [1.5.4](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.3...v1.5.4) (2022-04-11)
+
+
+### Bug Fixes
+
+* bump h2 from 2.1.210 to 2.1.212 ([9a6c4fd](https://github.com/opt-nc/api-partenaires-mobilis/commit/9a6c4fd3f21b3df3406d933196d3cf105134a7b9))
+
+## [1.5.3](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.2...v1.5.3) (2022-04-08)
+
+
+### Bug Fixes
+
+* bump jacoco-maven-plugin from 0.8.7 to 0.8.8 ([79ba81f](https://github.com/opt-nc/api-partenaires-mobilis/commit/79ba81f56809c1568b1188d4639f03774f3803bd))
+* bump spring-boot-starter-parent from 2.6.5 to 2.6.6 ([c373e87](https://github.com/opt-nc/api-partenaires-mobilis/commit/c373e87f22d54d2e7a71a1de9914cb8e293a902b))
+* bump spring-native.version from 0.11.3 to 0.11.4 ([722adfb](https://github.com/opt-nc/api-partenaires-mobilis/commit/722adfb21309d8679d6f24c00972ffb5b4bb282a))
+* bump springdoc-openapi.version from 1.6.6 to 1.6.7 ([3d97fdb](https://github.com/opt-nc/api-partenaires-mobilis/commit/3d97fdb1e5d0e995eac302dce5c399e9034dc340))
+
+## [1.5.2](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.1...v1.5.2) (2022-03-29)
+
+
+### Bug Fixes
+
+* **native:** 🚨 Régression build natif suite à l'upgrade vers Lucene 9.1.0 ([724cfe8](https://github.com/opt-nc/api-partenaires-mobilis/commit/724cfe843cbf3f2affef8a9291f9eb6a0a53befe)), closes [#136](https://github.com/opt-nc/api-partenaires-mobilis/issues/136)
+
 ## [1.5.1](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.0...v1.5.1) (2022-03-28)
 
 
