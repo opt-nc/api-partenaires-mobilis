@@ -82,7 +82,7 @@ http :8080/api/partenaires
 
 Récupère les boutiques situées dans un rayon de 2000 mètres du point indiqué :
 ```shell
-http :8080/api/partenaires nearByLon=166.448744 nearByLat=-22.302828 nearByDistance=2000
+http :8080/api/partenaires nearByLon==166.448744 nearByLat==-22.302828 nearByDistance==2000
 ```
 
 ## Docker
