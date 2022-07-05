@@ -19,7 +19,7 @@ Cette API a pour vocation à servir ces informations sous la forme d'un service 
 
 # 🚀 Démarrer
 
-Pour découvrir (aucun prérequis nécessaire) comment installer et utiliser cette API, rendez-vous directement sur le cours dédié sur [KataCoda](https://www.katacoda.com/opt-labs/courses/partenaires-mobilis).
+Pour découvrir (aucun prérequis nécessaire) comment installer et utiliser cette API, rendez-vous directement sur le cours dédié sur [KillerCoda](https://killercoda.com/opt-labs/course/partenaires-mobilis/partenaires-mobilis-discover).
 
 # 🙏 Feedbacks
 
