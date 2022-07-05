@@ -1,3 +1,11 @@
+## [1.5.5](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.4...v1.5.5) (2022-04-29)
+
+
+### Bug Fixes
+
+* bump spring-boot-starter-parent from 2.6.6 to 2.6.7 ([7e6255a](https://github.com/opt-nc/api-partenaires-mobilis/commit/7e6255a4f3f6eb398c2c883830671c3b1edc8880))
+* bump springdoc-openapi.version from 1.6.7 to 1.6.8 ([fb477b6](https://github.com/opt-nc/api-partenaires-mobilis/commit/fb477b69c56466d2a3cd857b53c7fd6f20271e70))
+
 ## [1.5.4](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.3...v1.5.4) (2022-04-11)
 
 
