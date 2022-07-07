@@ -1,3 +1,16 @@
+## [1.5.6](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.5...v1.5.6) (2022-07-07)
+
+
+### Bug Fixes
+
+* bump h2 from 2.1.212 to 2.1.214 ([c4dd4a8](https://github.com/opt-nc/api-partenaires-mobilis/commit/c4dd4a8997a6859e29bfd5c1007e3ff19ac258f3))
+* bump lucene.version from 9.1.0 to 9.2.0 ([7b005aa](https://github.com/opt-nc/api-partenaires-mobilis/commit/7b005aa502bb389b9906beb8d60bcf6cb189d867))
+* bump spring-boot-starter-parent from 2.6.7 to 2.7.0 ([00525d5](https://github.com/opt-nc/api-partenaires-mobilis/commit/00525d5be8ac1249f6c1e3eb384360feb137fc3a))
+* bump spring-boot-starter-parent from 2.7.0 to 2.7.1 ([42f2769](https://github.com/opt-nc/api-partenaires-mobilis/commit/42f2769fa5afb08f23669fd0d1268da8efacc606))
+* bump spring-native.version from 0.11.4 to 0.11.5 ([cf8c21f](https://github.com/opt-nc/api-partenaires-mobilis/commit/cf8c21f27206738246e1705bcee3948f5a21a3fe))
+* bump spring-native.version from 0.11.5 to 0.12.0 ([1031ba8](https://github.com/opt-nc/api-partenaires-mobilis/commit/1031ba8c1709a672412f2804b9dc38e3dd0f4eac))
+* bump springdoc-openapi.version from 1.6.8 to 1.6.9 ([20e8270](https://github.com/opt-nc/api-partenaires-mobilis/commit/20e8270e22a5aba99f4ba6bb2da87fef7d0b9003))
+
 ## [1.5.5](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.4...v1.5.5) (2022-04-29)
 
 
