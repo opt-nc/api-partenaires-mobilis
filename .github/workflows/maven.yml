@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install NodeJS
-        uses: actions/setup-node@v3.1.1
+        uses: actions/setup-node@v3.3.0
         with:
           node-version: 14.x
       - name: Install Semantic release and maven-semantic-release plugin
@@ -78,7 +78,7 @@ jobs:
       # Login against a Docker registry except on PR
       - name: Log into registry docker hub
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.OPT_DOCKERHUB_LOGIN }}
           password: ${{ secrets.OPT_DOCKERHUB_PASSWORD }}

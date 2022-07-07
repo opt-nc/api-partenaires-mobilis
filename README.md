@@ -1,6 +1,6 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 ![Build](https://github.com/opt-nc/api-partenaires-mobilis/actions/workflows/maven.yml/badge.svg)
-[![Docker Image](https://img.shields.io/badge/docker-homepage-blue)](https://hub.docker.com/repository/docker/optnc/api-partenaires-mobilis)
+[![Docker Image](https://img.shields.io/badge/docker-homepage-blue)](https://hub.docker.com/r/optnc/api-partenaires-mobilis)
 ![Docker Pulls](https://img.shields.io/docker/pulls/optnc/api-partenaires-mobilis)
 ![Docker Image Size (stable)](https://img.shields.io/docker/image-size/optnc/api-partenaires-mobilis/stable)
 ![Docker Stars](https://img.shields.io/docker/stars/optnc/api-partenaires-mobilis)
@@ -25,7 +25,8 @@ Version desktop                            |  Version mobile
 
 # 🕹️Jouer avec l'API tout de suite !
 
-Un cours dédié a été créé sur KataCoda : https://www.katacoda.com/opt-labs/courses/partenaires-mobilis
+Un cours dédié a été créé sur KillerCoda : https://killercoda.com/opt-labs/course/partenaires-mobilis/partenaires-mobilis-discover
+
 Tout y est abordé, les feedbacks sont bienvenus, par des issues idéalement.
 
 ## Lancement en DEV
