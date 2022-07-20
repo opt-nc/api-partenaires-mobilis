@@ -18,7 +18,7 @@
 
         <!-- Note : toutes les versions ci-dessous sont bloquées en attente car h2gis à un bug sur java 11+ : https://github.com/orbisgis/h2gis/issues/986 -->
         <h2.version>2.1.214</h2.version>
-        <h2gis.version>2.0.0</h2gis.version>
+        <h2gis.version>2.1.0</h2gis.version>
         <lucene.version>9.2.0</lucene.version>
         <spring-native.version>0.12.1</spring-native.version>
     </properties>
