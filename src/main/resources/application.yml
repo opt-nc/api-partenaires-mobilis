@@ -19,3 +19,5 @@ spring:
 springdoc:
   swagger-ui:
     path: /api
+
+server.forward-headers-strategy: native # pour que ce 💩 de Springdoc fonctionne jusqu'au bout en reverse proxy, sinon le protocol passe pas
