@@ -1,3 +1,14 @@
+## [1.5.7](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.6...v1.5.7) (2022-08-02)
+
+
+### Bug Fixes
+
+* bump h2gis from 2.0.0 to 2.1.0 ([586acfb](https://github.com/opt-nc/api-partenaires-mobilis/commit/586acfb91b66615f1c3273f179762ed817df622c))
+* bump lucene.version from 9.2.0 to 9.3.0 ([05d714c](https://github.com/opt-nc/api-partenaires-mobilis/commit/05d714c917fdba3ef9383365efa42a8acfd99e08))
+* bump spring-boot-starter-parent from 2.7.1 to 2.7.2 ([8362b58](https://github.com/opt-nc/api-partenaires-mobilis/commit/8362b58563ca864d6b1cd9afc8164036d2bf228e))
+* bump spring-native.version from 0.12.0 to 0.12.1 ([017ea77](https://github.com/opt-nc/api-partenaires-mobilis/commit/017ea77e757e6becc57f8bfb0c01b9324908697f))
+* **openapi:** Problème de procol HTTPS sur Killercoda ([866a804](https://github.com/opt-nc/api-partenaires-mobilis/commit/866a804196307d6e0028dc7c03269cff6c9191fc))
+
 ## [1.5.6](https://github.com/opt-nc/api-partenaires-mobilis/compare/v1.5.5...v1.5.6) (2022-07-07)
 
 
